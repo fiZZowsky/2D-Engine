@@ -1,19 +1,31 @@
 #include "Engine.h"
 
 void Engine::input() {
-	if (Keyboard::isKeyPressed(Keyboard::Escape)) 
+	bool leftPressed = false;
+	bool rightPressed = false;
+	bool spacePressed = false;
+
+	if (Keyboard::isKeyPressed(Keyboard::Escape)) {
 		m_window.close();
-	/*if (Keyboard::isKeyPressed(Keyboard::A))
-		m_character.moveLeft();
-	else
-		m_character.stopLeft();
-	if (Keyboard::isKeyPressed(Keyboard::D))
-		m_character.moveRight();
-	else
-		m_character.stopRight();	
-	if (Keyboard::isKeyPressed(Keyboard::Space))
-		m_character.jump();
-	else
-		m_character.fall();
-		*/
+	}
+	if (Keyboard::isKeyPressed(Keyboard::A)) {
+		leftPressed = true;
+		character.goesLeft = leftPressed;
+	} else {
+		leftPressed = false;
+		character.goesLeft = leftPressed;
+	}
+	if (Keyboard::isKeyPressed(Keyboard::D)) {
+		rightPressed = true;
+		character.goesRight = rightPressed;
+	} else {
+		rightPressed = false;
+		character.goesRight = rightPressed;
+	}
+	if (Keyboard::isKeyPressed(Keyboard::Space)) {
+		spacePressed = true;
+		character.jump(true);
+	} else {
+		spacePressed = false;
+	}
 }

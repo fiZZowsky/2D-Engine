@@ -133,6 +133,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="character.cpp" />
+    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Draw.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Input.cpp" />
@@ -140,6 +142,7 @@
     <ClCompile Include="Update.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="character.h" />
     <ClInclude Include="Engine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
