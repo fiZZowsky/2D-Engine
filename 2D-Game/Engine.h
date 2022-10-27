@@ -1,23 +1,28 @@
 #pragma once
-
-#include "frameworks.h"
-#include "character.h"
+#include "Headers.h"
+#include "Player.h"
 
 using namespace sf;
 
 class Engine {
-private:
-	RenderWindow m_window;
-
-	character character;
-
-	void input();
-	void collision();
-	void update(float dtAsSeconds);
-	void draw();	
 
 public:
 	Engine();
+	virtual ~Engine();
 
-	void start();
+	//Functions
+	void run();
+
+private:
+	sf::RenderWindow* window;
+
+	//Player
+	Player* player;
+
+	//Private functions
+	void initWindow();
+	void initPlayer();
+
+	void update();
+	void render();
 };

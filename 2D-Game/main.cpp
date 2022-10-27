@@ -2,6 +2,9 @@
 
 int main() {
 	Engine engine;
-	engine.start();
+
+	engine.run();
+
+	//End of application
 	return 0;
 }
