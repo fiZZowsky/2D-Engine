@@ -6,3 +6,5 @@
 
 //C++ headers
 #include <iostream>
+#include <sstream>
+#include <string>

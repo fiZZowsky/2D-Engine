@@ -1,6 +1,7 @@
 #pragma once
 #include "Headers.h"
 #include "Player.h"
+#include "PrimitiveRender.h"
 
 using namespace sf;
 
@@ -10,14 +11,18 @@ public:
 	Engine();
 	virtual ~Engine();
 
+	sf::RenderWindow* window;
+
 	//Functions
 	void run();
 
-private:
-	sf::RenderWindow* window;
+private:	
+	sf::Clock clock;
 
 	//Player
 	Player* player;
+
+	PrimitiveRender primitiveRender;
 
 	//Private functions
 	void initWindow();
@@ -25,4 +30,7 @@ private:
 
 	void update();
 	void render();
+
+	//Unused functions
+	/*void input();*/
 };
