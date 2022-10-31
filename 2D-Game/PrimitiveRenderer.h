@@ -16,7 +16,7 @@ public:
 	sf::CircleShape drawTriangle(int x, int y, int edgeSize,
 		sf::Color outlineColor = sf::Color::Black, sf::Color fillColor = sf::Color::Red);
 
-	sf::RectangleShape drawSFMLLine(int x, int y, int length, int rotation, sf::Color fillColor = sf::Color::Red);
-	/*void drawLine(int x0, int y0, int x1, int y1);*/
+	/*sf::ConvexShape drawLine(int x0, int y0, int x1, int y1, sf::Color fillColor = sf::Color::Red);*/
 
+	sf::RectangleShape drawSFMLLine(int x, int y, int length, int rotation, sf::Color fillColor = sf::Color::Red);
 };

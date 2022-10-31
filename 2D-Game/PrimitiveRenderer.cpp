@@ -1,8 +1,6 @@
 #include "PrimitiveRenderer.h"
 
-PrimitiveRenderer::PrimitiveRenderer() {
-	/*drawLine();*/
-}
+PrimitiveRenderer::PrimitiveRenderer() {}
 
 PrimitiveRenderer::~PrimitiveRenderer() {}
 
@@ -38,13 +36,11 @@ sf::CircleShape PrimitiveRenderer::drawTriangle(int x, int y, int edgeSize,
 	return triangle;
 }
 
-//void PrimitiveRenderer::drawLine(int x0, int y0, int x1, int y1) {
+//sf::ConvexShape PrimitiveRenderer::drawLine(int x0, int y0, int x1, int y1, sf::Color fillColor) {
 //	//incremental algorithm
+//	sf::ConvexShape line;
 //	sf::Vector2f deltaPos;
-//	int x0 = 0;
-//	int y0 = 2;
-//	int x1 = 10;
-//	int y1 = 4;
+//
 //	float m = 0;
 //	int counter = 1;
 //
@@ -61,6 +57,7 @@ sf::CircleShape PrimitiveRenderer::drawTriangle(int x, int y, int edgeSize,
 //		deltaPos.y += m;
 //		counter++;
 //	}
+//	return line;
 //}
 
 sf::RectangleShape PrimitiveRenderer::drawSFMLLine(int x, int y, int length, int rotation, sf::Color fillColor) {
