@@ -1,7 +1,7 @@
 #include "Engine.h"
 
 Engine::Engine() {
-	this->initWindow();
+	this->initWindow(WINDOWED);
 	this->initPlayer();
 }
 
@@ -31,12 +31,24 @@ void Engine::run() {
 
 
 //Private functions
-void Engine::initWindow() {
+void Engine::initWindow(int windowMode) {
 	Vector2f resolution;
 
 	resolution.x = VideoMode::getDesktopMode().width;
 	resolution.y = VideoMode::getDesktopMode().height;
-	this->window = new RenderWindow(VideoMode(resolution.x, resolution.y), "2D Platform Game", Style::Close);
+
+	switch (windowMode) {
+	case FULLSCREEN:
+		this->window = new RenderWindow(VideoMode(resolution.x, resolution.y), "2D Platform Game", Style::Fullscreen);
+		break;
+	case WINDOWED:
+		this->window = new RenderWindow(VideoMode(resolution.x, resolution.y), "2D Platform Game", Style::Close);
+		break;
+	case CUSTOM:
+		this->window = new RenderWindow(VideoMode(CUSTOM_RESOLUTION_X, CUSTOM_RESOLUTION_Y), "2D Platform Game", Style::Close);
+		break;
+	}
+
 	this->window->setVerticalSyncEnabled(true);
 }
 

@@ -34,7 +34,7 @@ void Player::render(sf::RenderTarget& target) {
 
 void Player::initTexture() {
 	//Load texture from file
-	if (!this->texture.loadFromFile("Textures/character.png")) {
+	if (!this->texture.loadFromFile("./Textures/character.png")) {
 		std::cout << "ERROR::PLAYER::LOAD_TEXTURE::Could not find the texture file!" << std::endl;
 	}
 }
