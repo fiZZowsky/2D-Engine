@@ -3,7 +3,12 @@
 #include "Player.h"
 #include "PrimitiveRender.h"
 
+#define CUSTOM_RESOLUTION_X 1280
+#define CUSTOM_RESOLUTION_Y 720
+
 using namespace sf;
+
+enum WindowMode {FULLSCREEN, WINDOWED, CUSTOM};
 
 class Engine {
 
@@ -25,7 +30,7 @@ private:
 	PrimitiveRender primitiveRender;
 
 	//Private functions
-	void initWindow();
+	void initWindow(int windowMode);
 	void initPlayer();
 
 	void update();
