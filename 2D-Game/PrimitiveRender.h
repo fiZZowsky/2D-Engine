@@ -6,17 +6,17 @@ public:
 	PrimitiveRender();
 	~PrimitiveRender();
 		
-	sf::CircleShape circle;
-	sf::RectangleShape rectangle;
+	/*sf::ConvexShape line;
+	sf::RectangleShape SFMLline;*/
 
-	void drawRectangle();
-	void drawCircle();
-	/*void drawTriangle();*/
-	/*void drawLine(int x0, int y0, int x1, int y1);*/
+	sf::RectangleShape drawRectangle(int x, int y, int width, int height,
+		sf::Color outlineColor = sf::Color::Black, sf::Color fillColor = sf::Color::Red);
 
-private:
-	int x0;
-	int y0;
-	int x1;
-	int y1;
+	sf::CircleShape drawCircle(int x, int y, int radius,
+		sf::Color outlineColor = sf::Color::Black, sf::Color fillColor = sf::Color::Red);
+
+	sf::CircleShape drawTriangle(int x, int y, int edgeSize,
+		sf::Color outlineColor = sf::Color::Black, sf::Color fillColor = sf::Color::Red);
+	/*void drawLine();*/
+	/*void drawSFMLLine();*/
 };

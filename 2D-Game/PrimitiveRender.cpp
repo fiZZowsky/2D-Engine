@@ -1,52 +1,69 @@
 #include "PrimitiveRender.h"
 
 PrimitiveRender::PrimitiveRender() {
-	drawRectangle();
-	drawCircle();
-	//drawTriangle();
-	//drawLine(x0, y0, x1, y1);
+	/*drawLine();*/
+	/*drawSFMLLine();*/
 }
 
 PrimitiveRender::~PrimitiveRender() {}
 
-void PrimitiveRender::drawRectangle() {
-	rectangle.setSize(sf::Vector2f(100, 50));
-	rectangle.setOutlineColor(sf::Color::Black);
-	rectangle.setPosition(500, 500);
-	rectangle.setFillColor(sf::Color::Magenta);
+sf::RectangleShape PrimitiveRender::drawRectangle(int x, int y, int width, int height,
+	sf::Color outlineColor, sf::Color fillColor) {
+
+	sf::RectangleShape rectangle(sf::Vector2f(width, height));
+	rectangle.setPosition(x, y);
+	rectangle.setOutlineColor(outlineColor);
+	rectangle.setFillColor(fillColor);
+	return rectangle;
 }
 
-void PrimitiveRender::drawCircle() {
-	circle.setRadius(50);
-	circle.setOutlineColor(sf::Color::Black);
-	circle.setPosition(700, 700);
-	circle.setFillColor(sf::Color::Cyan);
+sf::CircleShape PrimitiveRender::drawCircle(int x, int y, int radius,
+	sf::Color outlineColor, sf::Color fillColor) {
+	sf::CircleShape circle(radius);
+	circle.setPosition(x, y);
+	circle.setOutlineColor(outlineColor);
+	circle.setFillColor(fillColor);
+	return circle;
 }
 
-//void PrimitiveRender::drawTriangle() {
-//	sf::CircleShape triangle(x0, y0);
-//	triangle.setPosition(300, 300);
-//	triangle.setOutlineColor(sf::Color::Black);
-//	triangle.setFillColor(sf::Color::Green);
-//}
-//
-//void PrimitiveRender::drawLine(int x0, int y0, int x1, int y1) {
+sf::CircleShape PrimitiveRender::drawTriangle(int x, int y, int edgeSize,
+	sf::Color outlineColor, sf::Color fillColor) {
+
+	sf::CircleShape triangle(edgeSize, 3);
+	triangle.setPosition(x, y);
+	triangle.setFillColor(fillColor);
+	triangle.setOutlineColor(outlineColor);
+	return triangle;
+}
+
+//void PrimitiveRender::drawLine() {
 //	//incremental algorithm
-//	sf::ConvexShape polygon;
 //	sf::Vector2f deltaPos;
+//	int x0 = 0;
+//	int y0 = 2;
+//	int x1 = 10;
+//	int y1 = 4;
 //	float m = 0;
 //	int counter = 1;
+//
 //	deltaPos.x = x1 - x0;
 //	deltaPos.y = y1 - y0;
 //	m = deltaPos.y / deltaPos.x;
 //
-//	polygon.setPointCount(deltaPos.x + 1);
-//	polygon.setPoint(0, sf::Vector2f(x0, y0));
+//	line.setPointCount(deltaPos.x + 1);
+//	line.setPoint(0, sf::Vector2f(x0, y0));
 //
 //	while (counter <= deltaPos.x) {
-//		polygon.setPoint(counter, deltaPos);
+//		line.setPoint(counter, deltaPos);
 //		deltaPos.x += 1;
 //		deltaPos.y += m;
 //		counter++;
 //	}
+//}
+
+//void PrimitiveRender::drawSFMLLine() {
+//	SFMLline.setSize(sf::Vector2f(150, 1));
+//	SFMLline.setPosition(sf::Vector2f(500, 500));
+//	SFMLline.setFillColor(sf::Color::Black);
+//	//SFMLline.rotate(45);
 //}
