@@ -80,8 +80,8 @@ void Engine::render() {
 	window->draw(primitiveRenderer.drawRectangle(80, 400, 200, 50));
 	window->draw(primitiveRenderer.drawCircle(300, 300, 40));
 	window->draw(primitiveRenderer.drawTriangle(50, 50, 30));
-	/*window->draw(primitiveRenderer.line);
-	window->draw(primitiveRenderer.SFMLline);*/
+	window->draw(primitiveRenderer.drawSFMLLine(500, 500, 150, 45));
+	/*window->draw(primitiveRenderer.line);*/
 
 	this->player->render(*this->window);
 	this->window->display();

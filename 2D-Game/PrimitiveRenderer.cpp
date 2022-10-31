@@ -2,7 +2,6 @@
 
 PrimitiveRenderer::PrimitiveRenderer() {
 	/*drawLine();*/
-	/*drawSFMLLine();*/
 }
 
 PrimitiveRenderer::~PrimitiveRenderer() {}
@@ -64,9 +63,10 @@ sf::CircleShape PrimitiveRenderer::drawTriangle(int x, int y, int edgeSize,
 //	}
 //}
 
-//void PrimitiveRenderer::drawSFMLLine() {
-//	SFMLline.setSize(sf::Vector2f(150, 1));
-//	SFMLline.setPosition(sf::Vector2f(500, 500));
-//	SFMLline.setFillColor(sf::Color::Black);
-//	//SFMLline.rotate(45);
-//}
+sf::RectangleShape PrimitiveRenderer::drawSFMLLine(int x, int y, int length, int rotation, sf::Color fillColor) {
+	sf::RectangleShape SFMLline(sf::Vector2f(length, 1));
+	SFMLline.setPosition(sf::Vector2f(x, y));
+	SFMLline.setFillColor(fillColor);
+	SFMLline.rotate(rotation);
+	return SFMLline;
+}
