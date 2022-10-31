@@ -2,6 +2,7 @@
 #include "Headers.h"
 #include "Player.h"
 #include "PrimitiveRenderer.h"
+#include "Point2D.h"
 
 #define CUSTOM_RESOLUTION_X 1280
 #define CUSTOM_RESOLUTION_Y 720
@@ -27,9 +28,6 @@ private:
 	//Player
 	Player* player;
 
-	PrimitiveRenderer primitiveRenderer;
-
-
 	//Private functions
 	void initWindow(int windowMode);
 	void initPlayer();
@@ -39,4 +37,6 @@ private:
 
 	//Unused functions
 	/*void input();*/
+	PrimitiveRenderer primitiveRenderer;
+	Point2D point2d;
 };

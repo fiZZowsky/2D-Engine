@@ -82,6 +82,7 @@ void Engine::render() {
 	window->draw(primitiveRenderer.drawTriangle(50, 50, 30));
 	window->draw(primitiveRenderer.drawSFMLLine(500, 500, 150, 45));
 	/*window->draw(primitiveRenderer.drawLine(0, 2, 10, 4));*/
+	/*window->draw(point2d.drawPoint());*/
 
 	this->player->render(*this->window);
 	this->window->display();
