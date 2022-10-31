@@ -33,6 +33,16 @@ sf::CircleShape PrimitiveRenderer::drawTriangle(int x, int y, int edgeSize,
 	triangle.setOutlineColor(outlineColor);
 	return triangle;
 }
+
+sf::CircleShape PrimitiveRenderer::drawPolygon(int x, int y, int edgeSize, int sidesNumber,
+	sf::Color outlineColor, sf::Color fillColor) {
+
+	sf::CircleShape polygon(edgeSize, sidesNumber);
+	polygon.setPosition(x, y);
+	polygon.setFillColor(fillColor);
+	polygon.setOutlineColor(outlineColor);
+	return polygon;
+}
 //
 //void PrimitiveRender::drawLine(int x0, int y0, int x1, int y1) {
 //	//incremental algorithm

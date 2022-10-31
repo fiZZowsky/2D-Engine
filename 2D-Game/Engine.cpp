@@ -80,6 +80,7 @@ void Engine::render() {
 	window->draw(primitiveRenderer.drawRectangle(80, 400, 200, 50));
 	window->draw(primitiveRenderer.drawCircle(300, 300, 40));
 	window->draw(primitiveRenderer.drawTriangle(50, 50, 30));
+	window->draw(primitiveRenderer.drawPolygon(200, 100, 30, 4));
 	/*window->draw(primitiveRender.triangle);*/
 	/*window->draw(primitiveRender.drawLine(0, 2, 10, 4));*/
 
