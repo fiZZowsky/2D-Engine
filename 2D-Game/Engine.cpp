@@ -86,9 +86,9 @@ void Engine::render() {
 		window->draw(primitiveRenderer.drawPixel(30 + i, 30, sf::Color::Green));
 	}
 	
-	window->draw(primitiveRenderer.drawLine(30, 35, 330, 35, sf::Color::Blue));
-	/*window->draw(primitiveRender.triangle);*/
-	/*window->draw(primitiveRender.drawLine(0, 2, 10, 4));*/
+	window->draw(primitiveRenderer.drawLine(30, 35, 330, 65, sf::Color::Blue));
+	primitiveRenderer.myDrawLine(window, 330, 40, 30, 80, sf::Color::Black);
+	primitiveRenderer.myDrawLine(window, 180, 300, 200, 700, sf::Color::Black);
 
 	this->player->render(*this->window);
 	this->window->display();

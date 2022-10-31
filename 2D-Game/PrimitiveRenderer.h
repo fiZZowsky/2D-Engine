@@ -1,11 +1,11 @@
 #pragma once
 #include "Headers.h"
+#include <cmath>
 
 class PrimitiveRenderer{
 public:
 	PrimitiveRenderer();
 	~PrimitiveRenderer();
-		
 
 	sf::RectangleShape drawRectangle(int x, int y, int width, int height,
 		sf::Color outlineColor = sf::Color::Black, sf::Color fillColor = sf::Color::Red);
@@ -21,6 +21,11 @@ public:
 	
 	sf::RectangleShape drawPixel(int x, int y, sf::Color color = sf::Color::Red);
 	sf::VertexArray drawLine(int x1, int y1, int x2, int y2, sf::Color color = sf::Color::Red);
+
+	void myDrawLine(sf::RenderWindow* window, int x0, int y0, int x1, int y1, sf::Color color = sf::Color::Red);
+
+private:
+	void swap(int* a, int* b);
 
 
 
