@@ -18,6 +18,13 @@ public:
 
 	sf::CircleShape drawPolygon(int x, int y, int edgeSize, int sidesNumber = 3,
 		sf::Color outlineColor = sf::Color::Black, sf::Color fillColor = sf::Color::Red);
+	
+	sf::RectangleShape drawPixel(int x, int y, sf::Color color = sf::Color::Red);
+	sf::VertexArray drawLine(int x1, int y1, int x2, int y2, sf::Color color = sf::Color::Red);
+
+
+
+	//void myDrawLine(x1, y1, x2, y2);
 	/*void drawLine(int x0, int y0, int x1, int y1);*/
 
 

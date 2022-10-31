@@ -81,6 +81,12 @@ void Engine::render() {
 	window->draw(primitiveRenderer.drawCircle(300, 300, 40));
 	window->draw(primitiveRenderer.drawTriangle(50, 50, 30));
 	window->draw(primitiveRenderer.drawPolygon(200, 100, 30, 4));
+
+	for (int i = 0; i < 300; i++) {
+		window->draw(primitiveRenderer.drawPixel(30 + i, 30, sf::Color::Green));
+	}
+	
+	window->draw(primitiveRenderer.drawLine(30, 35, 330, 35, sf::Color::Blue));
 	/*window->draw(primitiveRender.triangle);*/
 	/*window->draw(primitiveRender.drawLine(0, 2, 10, 4));*/
 

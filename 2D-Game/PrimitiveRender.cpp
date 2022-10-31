@@ -43,6 +43,21 @@ sf::CircleShape PrimitiveRenderer::drawPolygon(int x, int y, int edgeSize, int s
 	polygon.setOutlineColor(outlineColor);
 	return polygon;
 }
+
+sf::RectangleShape PrimitiveRenderer::drawPixel(int x, int y, sf::Color color) {
+	return drawRectangle(x, y, 1, 1, color, color);
+}
+
+sf::VertexArray PrimitiveRenderer::drawLine(int x1, int y1, int x2, int y2, sf::Color color) {
+	sf::VertexArray line(sf::Lines, 2);
+
+	line[0] = sf::Vertex(sf::Vector2f(x1, y1), color);
+	line[1] = sf::Vertex(sf::Vector2f(x2, y2), color);
+
+	return line;
+}
+
+
 //
 //void PrimitiveRender::drawLine(int x0, int y0, int x1, int y1) {
 //	//incremental algorithm
