@@ -17,6 +17,7 @@ void Engine::run() {
 	sf::Time prevTime = clock.getElapsedTime();
 	sf::Time curTime;
 
+	// Main Loop
 	while (this->window->isOpen()) {
 		this->update();
 		this->render();
@@ -76,11 +77,11 @@ void Engine::render() {
 	this->window->clear(sf::Color::White);
 
 	//Draw all the stuffs
-	window->draw(primitiveRender.drawRectangle(80, 400, 200, 50));
-	window->draw(primitiveRender.drawCircle(300, 300, 40));
-	window->draw(primitiveRender.drawTriangle(50, 50, 30));
-	/*window->draw(primitiveRender.line);
-	window->draw(primitiveRender.SFMLline);*/
+	window->draw(primitiveRenderer.drawRectangle(80, 400, 200, 50));
+	window->draw(primitiveRenderer.drawCircle(300, 300, 40));
+	window->draw(primitiveRenderer.drawTriangle(50, 50, 30));
+	/*window->draw(primitiveRenderer.line);
+	window->draw(primitiveRenderer.SFMLline);*/
 
 	this->player->render(*this->window);
 	this->window->display();

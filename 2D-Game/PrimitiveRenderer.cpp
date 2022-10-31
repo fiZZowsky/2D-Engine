@@ -1,14 +1,15 @@
-#include "PrimitiveRender.h"
+#include "PrimitiveRenderer.h"
 
-PrimitiveRender::PrimitiveRender() {
+PrimitiveRenderer::PrimitiveRenderer() {
 	/*drawLine();*/
 	/*drawSFMLLine();*/
 }
 
-PrimitiveRender::~PrimitiveRender() {}
+PrimitiveRenderer::~PrimitiveRenderer() {}
 
-sf::RectangleShape PrimitiveRender::drawRectangle(int x, int y, int width, int height,
-	sf::Color outlineColor, sf::Color fillColor) {
+sf::RectangleShape PrimitiveRenderer::drawRectangle(int x, int y, int width, int height,
+	sf::Color outlineColor, sf::Color fillColor){
+
 
 	sf::RectangleShape rectangle(sf::Vector2f(width, height));
 	rectangle.setPosition(x, y);
@@ -17,8 +18,9 @@ sf::RectangleShape PrimitiveRender::drawRectangle(int x, int y, int width, int h
 	return rectangle;
 }
 
-sf::CircleShape PrimitiveRender::drawCircle(int x, int y, int radius,
-	sf::Color outlineColor, sf::Color fillColor) {
+sf::CircleShape PrimitiveRenderer::drawCircle(int x, int y, int radius,
+	sf::Color outlineColor, sf::Color fillColor){
+
 	sf::CircleShape circle(radius);
 	circle.setPosition(x, y);
 	circle.setOutlineColor(outlineColor);
@@ -26,17 +28,18 @@ sf::CircleShape PrimitiveRender::drawCircle(int x, int y, int radius,
 	return circle;
 }
 
-sf::CircleShape PrimitiveRender::drawTriangle(int x, int y, int edgeSize,
+sf::CircleShape PrimitiveRenderer::drawTriangle(int x, int y, int edgeSize, 
 	sf::Color outlineColor, sf::Color fillColor) {
 
 	sf::CircleShape triangle(edgeSize, 3);
-	triangle.setPosition(x, y);
+	triangle.setPosition(x,y);
+
 	triangle.setFillColor(fillColor);
 	triangle.setOutlineColor(outlineColor);
 	return triangle;
 }
 
-//void PrimitiveRender::drawLine() {
+//void PrimitiveRenderer::drawLine(int x0, int y0, int x1, int y1) {
 //	//incremental algorithm
 //	sf::Vector2f deltaPos;
 //	int x0 = 0;
@@ -61,7 +64,7 @@ sf::CircleShape PrimitiveRender::drawTriangle(int x, int y, int edgeSize,
 //	}
 //}
 
-//void PrimitiveRender::drawSFMLLine() {
+//void PrimitiveRenderer::drawSFMLLine() {
 //	SFMLline.setSize(sf::Vector2f(150, 1));
 //	SFMLline.setPosition(sf::Vector2f(500, 500));
 //	SFMLline.setFillColor(sf::Color::Black);
