@@ -1,7 +1,7 @@
 #pragma once
 #include "Headers.h"
 #include "Player.h"
-#include "PrimitiveRender.h"
+#include "PrimitiveRenderer.h"
 
 #define CUSTOM_RESOLUTION_X 1280
 #define CUSTOM_RESOLUTION_Y 720
@@ -27,7 +27,8 @@ private:
 	//Player
 	Player* player;
 
-	PrimitiveRender primitiveRender;
+	PrimitiveRenderer primitiveRenderer;
+
 
 	//Private functions
 	void initWindow(int windowMode);

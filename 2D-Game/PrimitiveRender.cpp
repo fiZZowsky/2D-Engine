@@ -1,34 +1,38 @@
-#include "PrimitiveRender.h"
+#include "PrimitiveRenderer.h"
 
-PrimitiveRender::PrimitiveRender() {
-	drawRectangle();
-	drawCircle();
-	//drawTriangle();
-	//drawLine(x0, y0, x1, y1);
+PrimitiveRenderer::PrimitiveRenderer() {
 }
 
-PrimitiveRender::~PrimitiveRender() {}
+PrimitiveRenderer::~PrimitiveRenderer() {}
 
-void PrimitiveRender::drawRectangle() {
-	rectangle.setSize(sf::Vector2f(100, 50));
-	rectangle.setOutlineColor(sf::Color::Black);
-	rectangle.setPosition(500, 500);
-	rectangle.setFillColor(sf::Color::Magenta);
+sf::RectangleShape PrimitiveRenderer::drawRectangle(int x, int y, int width, int height,
+	sf::Color outlineColor, sf::Color fillColor){
+
+	sf::RectangleShape rectangle(sf::Vector2f(width, height));
+	rectangle.setPosition(x, y);
+	rectangle.setOutlineColor(outlineColor);
+	rectangle.setFillColor(fillColor);
+	return rectangle;
 }
 
-void PrimitiveRender::drawCircle() {
-	circle.setRadius(50);
-	circle.setOutlineColor(sf::Color::Black);
-	circle.setPosition(700, 700);
-	circle.setFillColor(sf::Color::Cyan);
+sf::CircleShape PrimitiveRenderer::drawCircle(int x, int y, int radius,
+	sf::Color outlineColor, sf::Color fillColor){
+	sf::CircleShape circle(radius);
+	circle.setPosition(x, y);
+	circle.setOutlineColor(outlineColor);
+	circle.setFillColor(fillColor);
+	return circle;
 }
 
-//void PrimitiveRender::drawTriangle() {
-//	sf::CircleShape triangle(x0, y0);
-//	triangle.setPosition(300, 300);
-//	triangle.setOutlineColor(sf::Color::Black);
-//	triangle.setFillColor(sf::Color::Green);
-//}
+sf::CircleShape PrimitiveRenderer::drawTriangle(int x, int y, int edgeSize, 
+	sf::Color outlineColor, sf::Color fillColor) {
+
+	sf::CircleShape triangle(edgeSize, 3);
+	triangle.setPosition(x,y);
+	triangle.setFillColor(fillColor);
+	triangle.setOutlineColor(outlineColor);
+	return triangle;
+}
 //
 //void PrimitiveRender::drawLine(int x0, int y0, int x1, int y1) {
 //	//incremental algorithm
