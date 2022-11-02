@@ -38,5 +38,7 @@ private:
 	//Unused functions
 	/*void input();*/
 	PrimitiveRenderer primitiveRenderer;
-	Point2D point2d;
+
+
+	
 };

@@ -84,8 +84,10 @@ void Engine::render() {
 	window->draw(primitiveRenderer.drawSFMLLine(500, 500, 150, 45));
 	window->draw(primitiveRenderer.drawLine(300, 100, 400, 200));
 	primitiveRenderer.myDrawLine(window, 300, 120, 400, 220, sf::Color::Green);
-	/*window->draw(primitiveRenderer.drawLine(0, 2, 10, 4));*/
-	/*window->draw(point2d.drawPoint());*/
+
+	// TODO: DELETE THIS LATER
+	Point2D testPoint(400, 200);
+	window->draw(testPoint.drawPoint());
 
 	this->player->render(*this->window);
 	this->window->display();
