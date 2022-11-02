@@ -80,7 +80,10 @@ void Engine::render() {
 	window->draw(primitiveRenderer.drawRectangle(80, 400, 200, 50));
 	window->draw(primitiveRenderer.drawCircle(300, 300, 40));
 	window->draw(primitiveRenderer.drawTriangle(50, 50, 30));
+	window->draw(primitiveRenderer.drawPolygon(100, 150, 40, 7));
 	window->draw(primitiveRenderer.drawSFMLLine(500, 500, 150, 45));
+	window->draw(primitiveRenderer.drawLine(300, 100, 400, 200));
+	primitiveRenderer.myDrawLine(window, 300, 120, 400, 220, sf::Color::Green);
 	/*window->draw(primitiveRenderer.drawLine(0, 2, 10, 4));*/
 	/*window->draw(point2d.drawPoint());*/
 
