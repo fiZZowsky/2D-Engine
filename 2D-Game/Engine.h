@@ -4,6 +4,7 @@
 #include "PrimitiveRenderer.h"
 #include "Point2D.h"
 #include "LineSegment.h"
+#include <vector>
 
 #define CUSTOM_RESOLUTION_X 1280
 #define CUSTOM_RESOLUTION_Y 720

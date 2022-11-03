@@ -2,12 +2,12 @@
 #include "Headers.h"
 #include "PrimitiveRenderer.h"
 
-
+class PrimitiveRenderer; // forward declaration
 
 class Point2D{
 	private: 
 		int x, y;
-		PrimitiveRenderer primitiveRenderer;
+		PrimitiveRenderer *primitiveRenderer;
 	public:
 		Point2D();
 		Point2D(int x, int y);
