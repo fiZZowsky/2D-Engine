@@ -68,21 +68,45 @@ void Engine::render() {
 	this->window->clear(sf::Color::White);
 
 	//Draw all the stuffs
-	window->draw(primitiveRenderer.drawRectangle(80, 400, 200, 50));
-	window->draw(primitiveRenderer.drawCircle(300, 300, 40));
-	window->draw(primitiveRenderer.drawTriangle(50, 50, 30));
-	window->draw(primitiveRenderer.drawPolygon(100, 150, 40, 7));
-	window->draw(primitiveRenderer.drawSFMLLine(500, 500, 150, 45));
-	window->draw(primitiveRenderer.drawLine(300, 100, 400, 200));
-	primitiveRenderer.myDrawLine(window, 300, 120, 400, 220, sf::Color::Green);
+	//window->draw(primitiveRenderer.drawRectangle(80, 400, 200, 50));
+	//window->draw(primitiveRenderer.drawCircle(300, 300, 40));
+	//window->draw(primitiveRenderer.drawTriangle(50, 50, 30));
+	//window->draw(primitiveRenderer.drawPolygon(100, 150, 40, 7));
+	//window->draw(primitiveRenderer.drawSFMLLine(500, 500, 150, 45));
+	//window->draw(primitiveRenderer.drawLine(300, 100, 400, 200));
+	//primitiveRenderer.myDrawLine(window, 300, 120, 400, 220, sf::Color::Green);
 
+	//============================================================================================
 	// TODO: DELETE THIS LATER
-	Point2D testPoint(400, 200);
-	window->draw(testPoint.drawPoint());
+	//Point2D testPoint(400, 200);
+	//window->draw(testPoint.drawPoint());
 
-	LineSegment lineSegment(450, 200, 600, 300);
-	//window->draw(lineSegment.draw(sf::Color::Cyan));
-	lineSegment.drawWithIncrementalAlgorithm(window, sf::Color::Green);
+	//LineSegment lineSegment(450, 200, 600, 300);
+	////window->draw(lineSegment.draw(sf::Color::Cyan));
+	//lineSegment.drawWithIncrementalAlgorithm(window, sf::Color::Green);
+
+	std::vector<Point2D> points;
+	Point2D p1(100, 100), p2(200, 100), p3(200, 200), p4(150, 200);
+	points.push_back(p1);
+	points.push_back(p2);
+	points.push_back(p3);
+	points.push_back(p4);
+
+	//window->draw(primitiveRenderer.drawPolyline(points, sf::Color::Blue));
+	//window->draw(primitiveRenderer.drawClosedPolyline(points, sf::Color::Green));
+
+
+	std::vector<LineSegment> lineSegments;
+	LineSegment ls1(&p1, &p2), ls2(&p2, &p3);
+	lineSegments.push_back(ls1);
+	lineSegments.push_back(ls2);
+
+	window->draw(primitiveRenderer.drawPolyline(lineSegments, sf::Color::Blue));
+	window->draw(primitiveRenderer.drawClosedPolyline(lineSegments, sf::Color::Blue));
+
+
+
+	//============================================================================================
 
 	this->window->display();
 }

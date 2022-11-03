@@ -19,15 +19,13 @@ int Point2D::getY() {
 	return this->y;
 }
 
-
-
 void Point2D::setPoint(int x, int y) {
 	this->x = x;
 	this->y = y;
 }
 
 sf::RectangleShape Point2D::drawPoint() {
-	return primitiveRenderer.drawRectangle(x, y, 10, 10);
+	return primitiveRenderer->drawRectangle(x, y, 10, 10);
 }
 
 Point2D& Point2D::operator = (const Point2D& point) {

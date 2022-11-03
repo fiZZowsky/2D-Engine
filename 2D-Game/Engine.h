@@ -3,6 +3,7 @@
 #include "PrimitiveRenderer.h"
 #include "Point2D.h"
 #include "LineSegment.h"
+#include <vector>
 #include "Settings.h"
 
 using namespace sf;

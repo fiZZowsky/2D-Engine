@@ -1,5 +1,6 @@
 #include "PrimitiveRenderer.h"
 
+
 PrimitiveRenderer::PrimitiveRenderer() {}
 
 PrimitiveRenderer::~PrimitiveRenderer() {}
@@ -63,6 +64,63 @@ sf::VertexArray PrimitiveRenderer::drawLine(int x1, int y1, int x2, int y2, sf::
 	line[1] = sf::Vertex(sf::Vector2f(x2, y2), color);
 
 	return line;
+}
+
+sf::VertexArray PrimitiveRenderer::drawPolyline(std::vector<Point2D> points, sf::Color color) {
+
+	sf::VertexArray polyline(sf::LineStrip, points.size());
+
+	for (int i = 0; i < points.size(); i++) {
+		polyline[i] = sf::Vertex(sf::Vector2f(points[i].getX(), points[i].getY()), color);
+	}
+
+	return polyline;
+}
+
+sf::VertexArray PrimitiveRenderer::drawPolyline(std::vector<LineSegment> lineSegments, sf::Color color) {
+	sf::VertexArray polyline(sf::LineStrip, lineSegments.size() + 1);
+
+	for (int i = 0; i < lineSegments.size(); i++) {
+		polyline[i] = sf::Vertex(sf::Vector2f(lineSegments[i].getStartPoint()->getX(), lineSegments[i].getStartPoint()->getY()), color);
+	}
+	polyline[lineSegments.size()] = sf::Vertex(sf::Vector2f(lineSegments[lineSegments.size() - 1].getEndPoint()->getX(),
+		lineSegments[lineSegments.size() - 1].getEndPoint()->getY()), color);
+
+	return polyline;
+}
+
+
+
+sf::VertexArray PrimitiveRenderer::drawClosedPolyline(std::vector<Point2D> points, sf::Color color) {
+
+	sf::VertexArray polyline(sf::LineStrip, points.size() + 1);
+
+	for (int i = 0; i < points.size(); i++) {
+		polyline[i] = sf::Vertex(sf::Vector2f(points[i].getX(), points[i].getY()), color);
+	}
+	//closing the line
+	polyline[points.size()] = sf::Vertex(sf::Vector2f(points[0].getX(), points[0].getY()), color);
+
+	return polyline;
+
+}
+
+sf::VertexArray PrimitiveRenderer::drawClosedPolyline(std::vector<LineSegment> lineSegments, sf::Color color){
+
+	sf::VertexArray polyline(sf::LineStrip, lineSegments.size() + 2);
+
+	for (int i = 0; i < lineSegments.size(); i++) {
+		polyline[i] = sf::Vertex(sf::Vector2f(lineSegments[i].getStartPoint()->getX(), lineSegments[i].getStartPoint()->getY()), color);
+	}
+	polyline[lineSegments.size()] = sf::Vertex(sf::Vector2f(lineSegments[lineSegments.size() - 1].getEndPoint()->getX(),
+		lineSegments[lineSegments.size() - 1].getEndPoint()->getY()), color);
+
+	//end point
+	polyline[lineSegments.size() + 1] = sf::Vertex(sf::Vector2f(lineSegments[0].getStartPoint()->getX(),
+		lineSegments[0].getStartPoint()->getY()), color);
+
+	return polyline;
+
 }
 
 
