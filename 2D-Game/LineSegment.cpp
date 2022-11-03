@@ -3,7 +3,8 @@
 LineSegment::LineSegment() {}
 
 LineSegment::LineSegment(Point2D startPoint, Point2D endPoint) {
-	//TODO write after implementing = operator overloading
+	this->startPoint = startPoint;
+	this->endPoint = endPoint;
 }
 
 LineSegment::LineSegment(int x1, int y1, int x2, int y2) {
@@ -23,4 +24,8 @@ void LineSegment::setStartPoint(Point2D point) {
 }
 void LineSegment::setEndPoint(Point2D point) {
 	this->endPoint = point;
+}
+
+sf::VertexArray LineSegment::drawLineSegment() {
+	return primitiveRenderer.drawLine()
 }
