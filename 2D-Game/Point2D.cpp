@@ -33,6 +33,4 @@ sf::RectangleShape Point2D::drawPoint() {
 Point2D& Point2D::operator = (const Point2D& point) {
 	this->x = point.x;
 	this->y = point.y;
-
-	return *this;
 }

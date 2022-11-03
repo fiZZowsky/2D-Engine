@@ -21,6 +21,7 @@ public:
 	void setStartPoint(Point2D point);
 	void setEndPoint(Point2D point);
 	
-	sf::VertexArray drawLineSegment();
+	sf::VertexArray draw(sf::Color color = sf::Color::Red);
+	void drawWithIncrementalAlgorithm(sf::RenderWindow *window, sf::Color color = sf::Color::Red);
 
 };
