@@ -1,10 +1,11 @@
 #pragma once
 #include "Headers.h"
 #include <vector>
-
 #include "Point2D.h"
+#include "LineSegment.h"
 
 class Point2D; //forward declaration
+class LineSegment;
 
 
 class PrimitiveRenderer{
@@ -29,8 +30,12 @@ public:
 
 	sf::RectangleShape drawPixel(int x, int y, sf::Color color = sf::Color::Red);
 	sf::VertexArray drawLine(int x1, int y1, int x2, int y2, sf::Color color = sf::Color::Red);
+
 	sf::VertexArray drawPolyline(std::vector<Point2D> points, sf::Color color = sf::Color::Red);
+	sf::VertexArray drawPolyline(std::vector<LineSegment> lineSegments, sf::Color color = sf::Color::Red);
+
 	sf::VertexArray drawClosedPolyline(std::vector<Point2D> points, sf::Color color = sf::Color::Red);
+	sf::VertexArray drawClosedPolyline(std::vector<LineSegment> lineSegments, sf::Color color = sf::Color::Red);
 	//sf::VertexArray drawLine(Point2D start, Point2D end, sf::Color color = sf::Color:);
 	sf::RectangleShape drawSFMLLine(int x, int y, int length, int rotation, sf::Color fillColor = sf::Color::Red);
 

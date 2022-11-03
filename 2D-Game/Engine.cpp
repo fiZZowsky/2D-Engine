@@ -101,8 +101,17 @@ void Engine::render() {
 	points.push_back(p3);
 	points.push_back(p4);
 
-	window->draw(primitiveRenderer.drawPolyline(points, sf::Color::Blue));
-	window->draw(primitiveRenderer.drawClosedPolyline(points, sf::Color::Green));
+	//window->draw(primitiveRenderer.drawPolyline(points, sf::Color::Blue));
+	//window->draw(primitiveRenderer.drawClosedPolyline(points, sf::Color::Green));
+
+
+	std::vector<LineSegment> lineSegments;
+	LineSegment ls1(&p1, &p2), ls2(&p2, &p3);
+	lineSegments.push_back(ls1);
+	lineSegments.push_back(ls2);
+
+	window->draw(primitiveRenderer.drawPolyline(lineSegments, sf::Color::Blue));
+	window->draw(primitiveRenderer.drawClosedPolyline(lineSegments, sf::Color::Blue));
 
 
 
