@@ -2,12 +2,10 @@
 
 Engine::Engine() {
 	this->initWindow(WINDOWED);
-	this->initPlayer();
 }
 
 Engine::~Engine(){
 	delete this->window;
-	delete this->player;
 }
 
 //Functions
@@ -40,21 +38,17 @@ void Engine::initWindow(int windowMode) {
 
 	switch (windowMode) {
 	case FULLSCREEN:
-		this->window = new RenderWindow(VideoMode(resolution.x, resolution.y), "2D Platform Game", Style::Fullscreen);
+		this->window = new RenderWindow(VideoMode(resolution.x, resolution.y), "2D Game Engine", Style::Fullscreen);
 		break;
 	case WINDOWED:
-		this->window = new RenderWindow(VideoMode(resolution.x, resolution.y), "2D Platform Game", Style::Close);
+		this->window = new RenderWindow(VideoMode(resolution.x, resolution.y), "2D Game Engine", Style::Close);
 		break;
 	case CUSTOM:
-		this->window = new RenderWindow(VideoMode(CUSTOM_RESOLUTION_X, CUSTOM_RESOLUTION_Y), "2D Platform Game", Style::Close);
+		this->window = new RenderWindow(VideoMode(SCREEN_WIDTH_FHD, SCREEN_HEIGHT_FHD), "2D Game Engine", Style::Close);
 		break;
 	}
 
 	this->window->setVerticalSyncEnabled(true);
-}
-
-void Engine::initPlayer(){
-	this->player = new Player();
 }
 
 void Engine::update() {
@@ -68,9 +62,6 @@ void Engine::update() {
 			this->window->close();
 		}
 	}
-
-	//Move player
-	this->player->control();
 }
 
 void Engine::render() {
@@ -93,6 +84,5 @@ void Engine::render() {
 	//window->draw(lineSegment.draw(sf::Color::Cyan));
 	lineSegment.drawWithIncrementalAlgorithm(window, sf::Color::Green);
 
-	this->player->render(*this->window);
 	this->window->display();
 }
