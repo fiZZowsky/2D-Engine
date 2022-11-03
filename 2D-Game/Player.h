@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Headers.h"
+#include "Settings.h"
 
 class Player {
 public:

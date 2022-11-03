@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player() {
+Player::Player(){
 	this->movementSpeed = 1.f;
 
 	this->initTexture();
@@ -17,19 +17,17 @@ void Player::move(const float dirX, const float dirY) {
 
 void Player::control() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+		this->sprite.setScale(-1.f, 1.f);
 		move(-1.f, 0.f);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+		this->sprite.setScale(1.f, 1.f);
 		move(1.f, 0.f);
 	}
 }
 
 //Functions
 void Player::update() {
-}
-
-void Player::render(sf::RenderTarget& target) {
-	target.draw(this->sprite);
 }
 
 void Player::initTexture() {
@@ -45,4 +43,8 @@ void Player::initSprite() {
 
 	//Resize the sprite
 	this->sprite.scale(1.f, 1.f);
+}
+
+void Player::render(sf::RenderTarget& target) {
+	target.draw(this->sprite);
 }

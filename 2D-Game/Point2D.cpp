@@ -1,28 +1,37 @@
 #include "Point2D.h"
 
 Point2D::Point2D() {
-	point.x = 0;
-	point.y = 0;
+	x = 0;
+	y = 0;
 }
 
 Point2D::Point2D(int x, int y) {
-	point.x = x;
-	point.y = y;
+	this->x = x;
+	this->y = y;
 }
 
 Point2D::~Point2D() {}
 
-sf::Vector2i Point2D::getPoint() {
-	return point;
+int Point2D::getX() {
+	return this->x;
+}
+int Point2D::getY() {
+	return this->y;
 }
 
 
 
 void Point2D::setPoint(int x, int y) {
-	this->point.x = x;
-	this->point.y = y;
+	this->x = x;
+	this->y = y;
 }
 
 sf::RectangleShape Point2D::drawPoint() {
-	return primitiveRenderer.drawRectangle(point.x, point.y, 10, 10);
+	return primitiveRenderer.drawRectangle(x, y, 10, 10);
+}
+
+Point2D& Point2D::operator = (const Point2D& point) {
+	this->x = point.x;
+	this->y = point.y;
+	return *this;
 }

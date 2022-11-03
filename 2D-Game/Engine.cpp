@@ -89,6 +89,10 @@ void Engine::render() {
 	Point2D testPoint(400, 200);
 	window->draw(testPoint.drawPoint());
 
+	LineSegment lineSegment(450, 200, 600, 300);
+	//window->draw(lineSegment.draw(sf::Color::Cyan));
+	lineSegment.drawWithIncrementalAlgorithm(window, sf::Color::Green);
+
 	this->player->render(*this->window);
 	this->window->display();
 }
