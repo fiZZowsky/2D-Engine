@@ -26,6 +26,10 @@ void LineSegment::setEndPoint(Point2D point) {
 	this->endPoint = point;
 }
 
-sf::VertexArray LineSegment::drawLineSegment() {
-	return primitiveRenderer.drawLine()
+sf::VertexArray LineSegment::draw(sf::Color color) {
+	return primitiveRenderer.drawLine(startPoint.getX(), startPoint.getY(), endPoint.getX(), endPoint.getY(), color);
+}
+
+void LineSegment::drawWithIncrementalAlgorithm(sf::RenderWindow* window, sf::Color color) {
+	primitiveRenderer.myDrawLine(window, startPoint.getX(), startPoint.getY(), endPoint.getX(), endPoint.getY(), color);
 }

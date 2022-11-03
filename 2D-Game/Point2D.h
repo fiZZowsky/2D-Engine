@@ -2,6 +2,8 @@
 #include "Headers.h"
 #include "PrimitiveRenderer.h"
 
+
+
 class Point2D{
 	private: 
 		int x, y;
