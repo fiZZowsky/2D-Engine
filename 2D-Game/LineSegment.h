@@ -7,10 +7,11 @@
 class LineSegment {
 private:
 	Point2D startPoint, endPoint;
+	PrimitiveRenderer primitiveRenderer;
 
 public:
 
-	LineSegment() {}
+	LineSegment();
 	LineSegment(Point2D startPoint, Point2D endPoint);
 	LineSegment(int x1, int y1, int x2, int y2);
 

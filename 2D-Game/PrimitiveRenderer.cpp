@@ -65,6 +65,15 @@ sf::VertexArray PrimitiveRenderer::drawLine(int x1, int y1, int x2, int y2, sf::
 	return line;
 }
 
+sf::VertexArray drawLine(Point2D start, Point2D end, sf::Color color) {
+	sf::VertexArray line(sf::Lines, 2);
+
+	line[0] = sf::Vertex(sf::Vector2f(start.getX(), start.getY()), color);
+	line[1] = sf::Vertex(sf::Vector2f(end.getX(), end.getY()), color);
+
+	return line;
+}
+
 void PrimitiveRenderer::myDrawLine(sf::RenderWindow* window, int x0, int y0, int x1, int y1, sf::Color color) {
 	if (x0 > x1) {
 		swap(&x0, &x1);
