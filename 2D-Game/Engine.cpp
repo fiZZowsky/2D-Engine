@@ -105,6 +105,7 @@ void Engine::render() {
 	//window->draw(primitiveRenderer.drawClosedPolyline(lineSegments, sf::Color::Blue));
 
 	primitiveRenderer.myDrawCircle(window, 100, 100, 70);
+	primitiveRenderer.myDrawElipse(window, 300, 100, 100, 50);
 
 
 

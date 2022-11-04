@@ -193,6 +193,25 @@ void PrimitiveRenderer::myDrawCircle(sf::RenderWindow* window, int x, int y, int
 	}
 }
 
+void PrimitiveRenderer::myDrawElipse(sf::RenderWindow* window, int x, int y, int radiusX, int radiusY, sf::Color color) {
+	double angleInRadians;
+	Point2D p1, p2;
+	int tmpX, tmpY;
+	for (int i = 0; i < 180; i++) {
+		angleInRadians = (i * M_PI) / 180;
+
+		tmpX = radiusX * cos(angleInRadians);
+		tmpY = radiusY * sin(angleInRadians);
+
+		p1.setPoint(x + tmpX, y + tmpY);
+		p2.setPoint(x + tmpX, y - tmpY);
+
+		window->draw(drawPixel(p1.getX(), p1.getY()));
+		window->draw(drawPixel(p2.getX(), p2.getY()));
+	}
+
+}
+
 
 sf::RectangleShape PrimitiveRenderer::drawSFMLLine(int x, int y, int length, int rotation, sf::Color fillColor) {
 	sf::RectangleShape SFMLline(sf::Vector2f(length, 1));

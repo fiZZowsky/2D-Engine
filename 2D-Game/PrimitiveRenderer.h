@@ -44,6 +44,7 @@ public:
 
 	void myDrawLine(sf::RenderWindow* window, int x0, int y0, int x1, int y1, sf::Color color = sf::Color::Red);
 	void myDrawCircle(sf::RenderWindow *window, int x, int y, int radius, sf::Color color = sf::Color::Red);
+	void myDrawElipse(sf::RenderWindow* window, int x, int y, int radiusX, int radiusY, sf::Color color = sf::Color::Red);
 
 private:
 	void swap(int* a, int* b);
