@@ -1,8 +1,11 @@
 #pragma once
 #include "Headers.h"
+#include <cmath>
 #include <vector>
 #include "Point2D.h"
 #include "LineSegment.h"
+
+#define M_PI 3.14159265358979323846
 
 class Point2D; //forward declaration
 class LineSegment;
@@ -40,6 +43,7 @@ public:
 	sf::RectangleShape drawSFMLLine(int x, int y, int length, int rotation, sf::Color fillColor = sf::Color::Red);
 
 	void myDrawLine(sf::RenderWindow* window, int x0, int y0, int x1, int y1, sf::Color color = sf::Color::Red);
+	void myDrawCircle(sf::RenderWindow *window, int x, int y, int radius, sf::Color color = sf::Color::Red);
 
 private:
 	void swap(int* a, int* b);
