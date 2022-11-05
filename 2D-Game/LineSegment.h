@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Headers.h"
+#include <cmath>
 #include "Point2D.h"
 #include "PrimitiveRenderer.h"
 
@@ -13,6 +14,10 @@ private:
 	PrimitiveRenderer* primitiveRenderer;
 
 public:
+
+	static int crossProduct(Point2D* x, Point2D* y, Point2D* z);
+	static bool isPointOnLineSegment(Point2D* x, Point2D* y, Point2D* z);
+	static bool isLineSegmentsCrossing(LineSegment ls1, LineSegment ls2);
 
 	LineSegment();
 	LineSegment(Point2D* startPoint, Point2D* endPoint);
