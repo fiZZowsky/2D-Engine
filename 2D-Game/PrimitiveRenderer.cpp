@@ -1,5 +1,6 @@
 #include "PrimitiveRenderer.h"
 
+
 PrimitiveRenderer::PrimitiveRenderer() {}
 
 PrimitiveRenderer::~PrimitiveRenderer() {}
@@ -65,6 +66,63 @@ sf::VertexArray PrimitiveRenderer::drawLine(int x1, int y1, int x2, int y2, sf::
 	return line;
 }
 
+sf::VertexArray PrimitiveRenderer::drawPolyline(std::vector<Point2D> points, sf::Color color) {
+
+	sf::VertexArray polyline(sf::LineStrip, points.size());
+
+	for (int i = 0; i < points.size(); i++) {
+		polyline[i] = sf::Vertex(sf::Vector2f(points[i].getX(), points[i].getY()), color);
+	}
+
+	return polyline;
+}
+
+sf::VertexArray PrimitiveRenderer::drawPolyline(std::vector<LineSegment> lineSegments, sf::Color color) {
+	sf::VertexArray polyline(sf::LineStrip, lineSegments.size() + 1);
+
+	for (int i = 0; i < lineSegments.size(); i++) {
+		polyline[i] = sf::Vertex(sf::Vector2f(lineSegments[i].getStartPoint()->getX(), lineSegments[i].getStartPoint()->getY()), color);
+	}
+	polyline[lineSegments.size()] = sf::Vertex(sf::Vector2f(lineSegments[lineSegments.size() - 1].getEndPoint()->getX(),
+		lineSegments[lineSegments.size() - 1].getEndPoint()->getY()), color);
+
+	return polyline;
+}
+
+
+
+sf::VertexArray PrimitiveRenderer::drawClosedPolyline(std::vector<Point2D> points, sf::Color color) {
+
+	sf::VertexArray polyline(sf::LineStrip, points.size() + 1);
+
+	for (int i = 0; i < points.size(); i++) {
+		polyline[i] = sf::Vertex(sf::Vector2f(points[i].getX(), points[i].getY()), color);
+	}
+	//closing the line
+	polyline[points.size()] = sf::Vertex(sf::Vector2f(points[0].getX(), points[0].getY()), color);
+
+	return polyline;
+
+}
+
+sf::VertexArray PrimitiveRenderer::drawClosedPolyline(std::vector<LineSegment> lineSegments, sf::Color color){
+
+	sf::VertexArray polyline(sf::LineStrip, lineSegments.size() + 2);
+
+	for (int i = 0; i < lineSegments.size(); i++) {
+		polyline[i] = sf::Vertex(sf::Vector2f(lineSegments[i].getStartPoint()->getX(), lineSegments[i].getStartPoint()->getY()), color);
+	}
+	polyline[lineSegments.size()] = sf::Vertex(sf::Vector2f(lineSegments[lineSegments.size() - 1].getEndPoint()->getX(),
+		lineSegments[lineSegments.size() - 1].getEndPoint()->getY()), color);
+
+	//end point
+	polyline[lineSegments.size() + 1] = sf::Vertex(sf::Vector2f(lineSegments[0].getStartPoint()->getX(),
+		lineSegments[0].getStartPoint()->getY()), color);
+
+	return polyline;
+
+}
+
 
 //sf::VertexArray PrimitiveRenderer::drawLine(Point2D start, Point2D end, sf::Color color) {
 //	sf::VertexArray line(sf::Lines, 2);
@@ -113,6 +171,45 @@ void PrimitiveRenderer::myDrawLine(sf::RenderWindow* window, int x0, int y0, int
 		}
 
 	}
+}
+
+
+void PrimitiveRenderer::myDrawCircle(sf::RenderWindow* window, int x, int y, int radius, sf::Color color) {
+	
+	double angleInRadians;
+	Point2D p1, p2;
+	int tmpX, tmpY;
+	for (int i = 0; i < 180; i++) {
+		angleInRadians = (i * M_PI) / 180;
+
+		tmpX = radius * cos(angleInRadians);
+		tmpY = radius * sin(angleInRadians);
+
+		p1.setPoint(x + tmpX, y + tmpY);
+		p2.setPoint(x + tmpX, y - tmpY);
+
+		window->draw(drawPixel(p1.getX(), p1.getY()));
+		window->draw(drawPixel(p2.getX(), p2.getY()));
+	}
+}
+
+void PrimitiveRenderer::myDrawElipse(sf::RenderWindow* window, int x, int y, int radiusX, int radiusY, sf::Color color) {
+	double angleInRadians;
+	Point2D p1, p2;
+	int tmpX, tmpY;
+	for (int i = 0; i < 180; i++) {
+		angleInRadians = (i * M_PI) / 180;
+
+		tmpX = radiusX * cos(angleInRadians);
+		tmpY = radiusY * sin(angleInRadians);
+
+		p1.setPoint(x + tmpX, y + tmpY);
+		p2.setPoint(x + tmpX, y - tmpY);
+
+		window->draw(drawPixel(p1.getX(), p1.getY()));
+		window->draw(drawPixel(p2.getX(), p2.getY()));
+	}
+
 }
 
 
