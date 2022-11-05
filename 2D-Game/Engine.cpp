@@ -107,12 +107,12 @@ void Engine::render() {
 	/*primitiveRenderer.myDrawCircle(window, 100, 100, 70);
 	primitiveRenderer.myDrawElipse(window, 300, 100, 100, 50);*/
 
-	/*LineSegment ls1(50, 50, 200, 50), ls2(100, 30, 100, 49);
+	LineSegment ls1(50, 50, 200, 50), ls2(100, 30, 100, 49);
 	window->draw(ls1.draw(sf::Color::Blue));
 	window->draw(ls2.draw(sf::Color::Green));
 
 
-	if (LineSegment::isLineSegmentsCrossing(ls1, ls2))	std::cout << "Tak" << std::endl;
+	/*if (LineSegment::isLineSegmentsCrossing(ls1, ls2))	std::cout << "Tak" << std::endl;
 	else std::cout << "Nie" << std::endl;*/
 
 
