@@ -4,7 +4,7 @@ Engine::Engine() {
 	this->initWindow(WINDOWED);
 }
 
-Engine::~Engine(){
+Engine::~Engine() {
 	delete this->window;
 }
 
@@ -19,13 +19,13 @@ void Engine::run() {
 	while (this->window->isOpen()) {
 		this->update();
 		this->render();
-		
+
 		//FPS counter
 		curTime = clock.getElapsedTime();
 		fps = 1.0f / (curTime.asSeconds() - prevTime.asSeconds());
 		/*std::cout << fps << std::endl;*/
 		prevTime = curTime;
-	}	
+	}
 }
 
 
@@ -78,44 +78,16 @@ void Engine::render() {
 
 	//============================================================================================
 	// TODO: DELETE THIS LATER
-	//Point2D testPoint(400, 200);
-	//window->draw(testPoint.drawPoint());
 
-	//LineSegment lineSegment(450, 200, 600, 300);
-	////window->draw(lineSegment.draw(sf::Color::Cyan));
-	//lineSegment.drawWithIncrementalAlgorithm(window, sf::Color::Green);
-
+	Point2D p1(100, 100), p2(200, 100), p3(200, 300);
 	std::vector<Point2D> points;
-	Point2D p1(100, 100), p2(200, 100), p3(200, 200), p4(150, 200);
 	points.push_back(p1);
 	points.push_back(p2);
 	points.push_back(p3);
-	points.push_back(p4);
 
-	//window->draw(primitiveRenderer.drawPolyline(points, sf::Color::Blue));
-	//window->draw(primitiveRenderer.drawClosedPolyline(points, sf::Color::Green));
-
-
-	//std::vector<LineSegment> lineSegments;
-	//LineSegment ls1(&p1, &p2), ls2(&p2, &p3);
-	//lineSegments.push_back(ls1);
-	//lineSegments.push_back(ls2);
-
-	//window->draw(primitiveRenderer.drawPolyline(lineSegments, sf::Color::Blue));
-	//window->draw(primitiveRenderer.drawClosedPolyline(lineSegments, sf::Color::Blue));
-
-	primitiveRenderer.myDrawCircle(window, 100, 100, 70);
-	primitiveRenderer.myDrawElipse(window, 300, 100, 100, 50);
-
-	/*LineSegment ls1(50, 50, 200, 50), ls2(100, 30, 100, 49);
-	window->draw(ls1.draw(sf::Color::Blue));
-	window->draw(ls2.draw(sf::Color::Green));
-
-
-	if (LineSegment::isLineSegmentsCrossing(ls1, ls2))	std::cout << "Tak" << std::endl;
-	else std::cout << "Nie" << std::endl;*/
-
-
+	primitiveRenderer.myDrawPolygon(window, points, sf::Color::Black);
+	//primitiveRenderer.boundryFill(window, Point2D(150, 150), sf::Color::Blue, sf::Color::Black);
+	primitiveRenderer.floodFill(window, Point2D(150, 150), sf::Color::Yellow);
 
 	//============================================================================================
 

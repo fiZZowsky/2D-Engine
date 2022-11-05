@@ -1,4 +1,4 @@
-#include "PrimitiveRenderer.h"
+﻿#include "PrimitiveRenderer.h"
 
 
 PrimitiveRenderer::PrimitiveRenderer() {}
@@ -12,7 +12,7 @@ void PrimitiveRenderer::swap(int* a, int* b) {
 }
 
 sf::RectangleShape PrimitiveRenderer::drawRectangle(int x, int y, int width, int height,
-	sf::Color outlineColor, sf::Color fillColor){
+	sf::Color outlineColor, sf::Color fillColor) {
 
 
 	sf::RectangleShape rectangle(sf::Vector2f(width, height));
@@ -23,7 +23,7 @@ sf::RectangleShape PrimitiveRenderer::drawRectangle(int x, int y, int width, int
 }
 
 sf::CircleShape PrimitiveRenderer::drawCircle(int x, int y, int radius,
-	sf::Color outlineColor, sf::Color fillColor){
+	sf::Color outlineColor, sf::Color fillColor) {
 
 	sf::CircleShape circle(radius);
 	circle.setPosition(x, y);
@@ -32,11 +32,11 @@ sf::CircleShape PrimitiveRenderer::drawCircle(int x, int y, int radius,
 	return circle;
 }
 
-sf::CircleShape PrimitiveRenderer::drawTriangle(int x, int y, int edgeSize, 
+sf::CircleShape PrimitiveRenderer::drawTriangle(int x, int y, int edgeSize,
 	sf::Color outlineColor, sf::Color fillColor) {
 
 	sf::CircleShape triangle(edgeSize, 3);
-	triangle.setPosition(x,y);
+	triangle.setPosition(x, y);
 
 	triangle.setFillColor(fillColor);
 	triangle.setOutlineColor(outlineColor);
@@ -56,6 +56,12 @@ sf::CircleShape PrimitiveRenderer::drawPolygon(int x, int y, int edgeSize, int s
 sf::RectangleShape PrimitiveRenderer::drawPixel(int x, int y, sf::Color color) {
 	return drawRectangle(x, y, 1, 1, color, color);
 }
+
+
+sf::RectangleShape PrimitiveRenderer::drawPixel(Point2D* point, sf::Color color) {
+	return drawRectangle(point->getX(), point->getY(), 1, 1, color, color);
+}
+
 
 sf::VertexArray PrimitiveRenderer::drawLine(int x1, int y1, int x2, int y2, sf::Color color) {
 	sf::VertexArray line(sf::Lines, 2);
@@ -105,7 +111,7 @@ sf::VertexArray PrimitiveRenderer::drawClosedPolyline(std::vector<Point2D> point
 
 }
 
-sf::VertexArray PrimitiveRenderer::drawClosedPolyline(std::vector<LineSegment> lineSegments, sf::Color color){
+sf::VertexArray PrimitiveRenderer::drawClosedPolyline(std::vector<LineSegment> lineSegments, sf::Color color) {
 
 	sf::VertexArray polyline(sf::LineStrip, lineSegments.size() + 2);
 
@@ -123,15 +129,6 @@ sf::VertexArray PrimitiveRenderer::drawClosedPolyline(std::vector<LineSegment> l
 
 }
 
-
-//sf::VertexArray PrimitiveRenderer::drawLine(Point2D start, Point2D end, sf::Color color) {
-//	sf::VertexArray line(sf::Lines, 2);
-//
-//	line[0] = sf::Vertex(sf::Vector2f(start.getX(), start.getY()), color);
-//	line[1] = sf::Vertex(sf::Vector2f(end.getX(), end.getY()), color);
-//
-//	return line;
-//}
 
 void PrimitiveRenderer::myDrawLine(sf::RenderWindow* window, int x0, int y0, int x1, int y1, sf::Color color) {
 	if (x0 > x1) {
@@ -175,7 +172,7 @@ void PrimitiveRenderer::myDrawLine(sf::RenderWindow* window, int x0, int y0, int
 
 
 void PrimitiveRenderer::myDrawCircle(sf::RenderWindow* window, int x, int y, int radius, sf::Color color) {
-	
+
 	double angleInRadians;
 	Point2D p1, p2;
 	int tmpX, tmpY;
@@ -209,7 +206,134 @@ void PrimitiveRenderer::myDrawElipse(sf::RenderWindow* window, int x, int y, int
 		window->draw(drawPixel(p1.getX(), p1.getY()));
 		window->draw(drawPixel(p2.getX(), p2.getY()));
 	}
+}
 
+void PrimitiveRenderer::myDrawPolygon(sf::RenderWindow* window, std::vector<Point2D> points, sf::Color color) {
+
+	std::vector<LineSegment> lineSegments;
+
+	//we need at least 3 points to draw polygon
+	if (points.size() < 3) {
+		return;
+	}
+
+	// converting points to line segments
+	for (int i = 1; i < points.size(); i++) {
+		lineSegments.push_back(LineSegment(&points[i - 1], &points[i]));
+	}
+	lineSegments.push_back(LineSegment(&points[points.size() - 1], &points[0]));
+
+	myDrawPolygon(window, lineSegments, color);
+}
+
+void PrimitiveRenderer::myDrawPolygon(sf::RenderWindow* window, std::vector<LineSegment> lineSegments, sf::Color color) {
+
+	//we need at least 3 linesegments to draw polygon
+	if (lineSegments.size() < 3) {
+		return;
+	}
+
+	// checking if line segments are crossing
+	for (int i = 1; i < lineSegments.size(); i++) {
+		for (int j = 0; j < i; j++) {
+			if (LineSegment::isLineSegmentsCrossing(lineSegments[j], lineSegments[i])) {
+				return;
+			}
+		}
+	}
+
+	window->draw(drawPolyline(lineSegments, color));
+}
+
+void PrimitiveRenderer::boundryFill(sf::RenderWindow* window, Point2D p, sf::Color fillColor, sf::Color boundryColor) {
+	//making window screenshot to be able to get pixel color
+	sf::Texture texture;
+	sf::Image screenshot;
+
+	texture.create(window->getSize().x, window->getSize().y);
+	texture.update(*window);
+	screenshot = texture.copyToImage();
+
+	//getting pixel color
+	sf::Color pixelColor = screenshot.getPixel(p.getX(), p.getY());
+
+	//if (pixelColor == fillColor) std::cout << "White" << std::endl;
+	//else std::cout << "Inny" << std::endl;
+
+	//iteracyjnie
+	std::vector<Point2D> pointsToFill;
+	pointsToFill.push_back(p);
+
+	while (!pointsToFill.empty()) {
+		//pobranie punktu z kolejki i usuniêcie go z niej
+		p = pointsToFill[pointsToFill.size() - 1];
+		pointsToFill.pop_back();
+
+		//ustalenie koloru pixela
+		pixelColor = screenshot.getPixel(p.getX(), p.getY());
+
+		//if (pixelColor == sf::Color::Black) std::cout << "Black" << std::endl;
+
+		if (pixelColor == fillColor) continue;
+		if (pixelColor == boundryColor) continue;
+
+		//rysowanie pixela na ekranie
+		window->draw(drawPixel(&p, fillColor));
+
+		//rysowanie pixela na kopii ekranu
+		screenshot.setPixel(p.getX(), p.getY(), fillColor);
+
+		pointsToFill.push_back(Point2D(p.getX(), p.getY() - 1));	//N
+		pointsToFill.push_back(Point2D(p.getX(), p.getY() + 1));	//S
+		pointsToFill.push_back(Point2D(p.getX() + 1, p.getY()));	//W
+		pointsToFill.push_back(Point2D(p.getX() - 1, p.getY()));	//E
+	}
+}
+
+void PrimitiveRenderer::floodFill(sf::RenderWindow* window, Point2D p, sf::Color fillColor) {
+	//making window screenshot to be able to get pixel color
+	sf::Texture texture;
+	sf::Image screenshot;
+
+	texture.create(window->getSize().x, window->getSize().y);
+	texture.update(*window);
+	screenshot = texture.copyToImage();
+
+	//getting pixel color
+	sf::Color pixelColor = screenshot.getPixel(p.getX(), p.getY());
+	sf::Color backgroundColor = pixelColor;
+
+	//if (pixelColor == fillColor) std::cout << "White" << std::endl;
+	//else std::cout << "Inny" << std::endl;
+
+	//iteracyjnie
+	std::vector<Point2D> pointsToFill;
+	pointsToFill.push_back(p);
+
+	while (!pointsToFill.empty()) {
+		//pobranie punktu z kolejki i usuniêcie go z niej
+		p = pointsToFill[pointsToFill.size() - 1];
+		pointsToFill.pop_back();
+
+		//ustalenie koloru pixela
+		pixelColor = screenshot.getPixel(p.getX(), p.getY());
+
+		//if (pixelColor == sf::Color::Black) std::cout << "Black" << std::endl;
+
+		if (pixelColor == fillColor) continue;
+		if (pixelColor != backgroundColor) continue;
+
+		//rysowanie pixela na ekranie
+		window->draw(drawPixel(&p, fillColor));
+
+		//rysowanie pixela na kopii ekranu
+		screenshot.setPixel(p.getX(), p.getY(), fillColor);
+
+		pointsToFill.push_back(Point2D(p.getX(), p.getY() - 1));	//N
+		pointsToFill.push_back(Point2D(p.getX(), p.getY() + 1));	//S
+		pointsToFill.push_back(Point2D(p.getX() + 1, p.getY()));	//W
+		pointsToFill.push_back(Point2D(p.getX() - 1, p.getY()));	//E
+	}
 }
 
 

@@ -33,3 +33,7 @@ Point2D& Point2D::operator = (const Point2D& point) {
 	this->y = point.y;
 	return *this;
 }
+
+bool Point2D::operator == (const Point2D& point) {
+	return this->getX() == point.x && this->getY() == point.y;
+}
