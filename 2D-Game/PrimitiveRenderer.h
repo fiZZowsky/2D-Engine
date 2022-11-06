@@ -50,6 +50,7 @@ public:
 	void myDrawPolygon(sf::RenderWindow* window, std::vector<LineSegment> lineSegments, sf::Color color = sf::Color::Red);
 
 	void boundryFill(sf::RenderWindow* window, Point2D p, sf::Color fillColor, sf::Color boundryColor);
+	void floodFill(sf::RenderWindow* window, Point2D p, sf::Color fillColor);
 
 private:
 	void swap(int* a, int* b);
