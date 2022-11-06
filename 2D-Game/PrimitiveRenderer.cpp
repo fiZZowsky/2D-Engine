@@ -1,4 +1,4 @@
-ï»¿#include "PrimitiveRenderer.h"
+#include "PrimitiveRenderer.h"
 
 
 PrimitiveRenderer::PrimitiveRenderer() {}
@@ -12,7 +12,7 @@ void PrimitiveRenderer::swap(int* a, int* b) {
 }
 
 sf::RectangleShape PrimitiveRenderer::drawRectangle(int x, int y, int width, int height,
-	sf::Color outlineColor, sf::Color fillColor) {
+	sf::Color outlineColor, sf::Color fillColor){
 
 
 	sf::RectangleShape rectangle(sf::Vector2f(width, height));
@@ -23,7 +23,7 @@ sf::RectangleShape PrimitiveRenderer::drawRectangle(int x, int y, int width, int
 }
 
 sf::CircleShape PrimitiveRenderer::drawCircle(int x, int y, int radius,
-	sf::Color outlineColor, sf::Color fillColor) {
+	sf::Color outlineColor, sf::Color fillColor){
 
 	sf::CircleShape circle(radius);
 	circle.setPosition(x, y);
@@ -32,11 +32,11 @@ sf::CircleShape PrimitiveRenderer::drawCircle(int x, int y, int radius,
 	return circle;
 }
 
-sf::CircleShape PrimitiveRenderer::drawTriangle(int x, int y, int edgeSize,
+sf::CircleShape PrimitiveRenderer::drawTriangle(int x, int y, int edgeSize, 
 	sf::Color outlineColor, sf::Color fillColor) {
 
 	sf::CircleShape triangle(edgeSize, 3);
-	triangle.setPosition(x, y);
+	triangle.setPosition(x,y);
 
 	triangle.setFillColor(fillColor);
 	triangle.setOutlineColor(outlineColor);
@@ -58,7 +58,7 @@ sf::RectangleShape PrimitiveRenderer::drawPixel(int x, int y, sf::Color color) {
 }
 
 
-sf::RectangleShape PrimitiveRenderer::drawPixel(Point2D* point, sf::Color color) {
+sf::RectangleShape PrimitiveRenderer::drawPixel(Point2D *point, sf::Color color) {
 	return drawRectangle(point->getX(), point->getY(), 1, 1, color, color);
 }
 
@@ -111,7 +111,7 @@ sf::VertexArray PrimitiveRenderer::drawClosedPolyline(std::vector<Point2D> point
 
 }
 
-sf::VertexArray PrimitiveRenderer::drawClosedPolyline(std::vector<LineSegment> lineSegments, sf::Color color) {
+sf::VertexArray PrimitiveRenderer::drawClosedPolyline(std::vector<LineSegment> lineSegments, sf::Color color){
 
 	sf::VertexArray polyline(sf::LineStrip, lineSegments.size() + 2);
 
@@ -172,7 +172,7 @@ void PrimitiveRenderer::myDrawLine(sf::RenderWindow* window, int x0, int y0, int
 
 
 void PrimitiveRenderer::myDrawCircle(sf::RenderWindow* window, int x, int y, int radius, sf::Color color) {
-
+	
 	double angleInRadians;
 	Point2D p1, p2;
 	int tmpX, tmpY;
@@ -265,10 +265,10 @@ void PrimitiveRenderer::boundryFill(sf::RenderWindow* window, Point2D p, sf::Col
 	pointsToFill.push_back(p);
 
 	while (!pointsToFill.empty()) {
-		//pobranie punktu z kolejki i usuniÃªcie go z niej
+		//pobranie punktu z kolejki i usuniêcie go z niej
 		p = pointsToFill[pointsToFill.size() - 1];
 		pointsToFill.pop_back();
-
+		
 		//ustalenie koloru pixela
 		pixelColor = screenshot.getPixel(p.getX(), p.getY());
 
@@ -311,7 +311,7 @@ void PrimitiveRenderer::floodFill(sf::RenderWindow* window, Point2D p, sf::Color
 	pointsToFill.push_back(p);
 
 	while (!pointsToFill.empty()) {
-		//pobranie punktu z kolejki i usuniÃªcie go z niej
+		//pobranie punktu z kolejki i usuniêcie go z niej
 		p = pointsToFill[pointsToFill.size() - 1];
 		pointsToFill.pop_back();
 

@@ -8,7 +8,7 @@
 
 using namespace sf;
 
-enum WindowMode { FULLSCREEN, WINDOWED, CUSTOM };
+enum WindowMode {FULLSCREEN, WINDOWED, CUSTOM};
 
 class Engine {
 
@@ -21,7 +21,7 @@ public:
 	//Functions
 	void run();
 
-private:
+private:	
 	sf::Clock clock;
 
 	//Private functions
@@ -34,5 +34,5 @@ private:
 	PrimitiveRenderer primitiveRenderer;
 
 
-
+	
 };

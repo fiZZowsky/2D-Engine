@@ -1,4 +1,4 @@
-ï»¿#include "LineSegment.h"
+#include "LineSegment.h"
 
 LineSegment::LineSegment() {
 	startPoint = new Point2D(0, 0);
@@ -6,7 +6,7 @@ LineSegment::LineSegment() {
 }
 
 // iloczyn wektorowy
-int LineSegment::crossProduct(Point2D* x, Point2D* y, Point2D* z)
+int LineSegment::crossProduct(Point2D *x, Point2D *y, Point2D *z)
 {
 	int x1 = z->getX() - x->getX(), y1 = z->getY() - x->getY(),
 		x2 = y->getX() - x->getX(), y2 = y->getY() - x->getY();
@@ -14,8 +14,8 @@ int LineSegment::crossProduct(Point2D* x, Point2D* y, Point2D* z)
 }
 
 //sprawdzenie, czy punkt Z(koniec odcinka pierwszego)
-//leÂ¿y na odcinku XY 
-bool LineSegment::isPointOnLineSegment(Point2D* x, Point2D* y, Point2D* z)
+//le¿y na odcinku XY 
+bool LineSegment::isPointOnLineSegment(Point2D *x, Point2D *y, Point2D *z)
 {
 	//jezeli punkt Z jest rowny jednemu z koncow odcinka to uznajemy, ze nie lezy na nim
 	if (*z == *x || *z == *y) {
@@ -38,19 +38,19 @@ bool LineSegment::isLineSegmentsCrossing(LineSegment ls1, LineSegment ls2) {
 		v3 = LineSegment::crossProduct(A, B, C),
 		v4 = LineSegment::crossProduct(A, B, D);
 
-	//sprawdzenie czy siÃª przecinajÂ¹ - dla nieduÂ¿ych liczb
+	//sprawdzenie czy siê przecinaj¹ - dla niedu¿ych liczb
 	//if(v1*v2 < 0 && v3*v4 < 0) return 1;
 
-	//sprawdzenie czy siÃª przecinajÂ¹ - dla wiÃªkszych liczb
+	//sprawdzenie czy siê przecinaj¹ - dla wiêkszych liczb
 	if ((v1 > 0 && v2 < 0 || v1 < 0 && v2>0) && (v3 > 0 && v4 < 0 || v3 < 0 && v4>0)) return 1;
 
-	//sprawdzenie, czy koniec odcinka leÂ¿y na drugim
+	//sprawdzenie, czy koniec odcinka le¿y na drugim
 	if (v1 == 0 && LineSegment::isPointOnLineSegment(C, D, A)) return true;
 	if (v2 == 0 && LineSegment::isPointOnLineSegment(C, D, B)) return true;
 	if (v3 == 0 && LineSegment::isPointOnLineSegment(A, B, C)) return true;
 	if (v4 == 0 && LineSegment::isPointOnLineSegment(A, B, D)) return true;
 
-	//odcinki nie majÂ¹ punktÃ³w wspÃ³lnych
+	//odcinki nie maj¹ punktów wspólnych
 	return false;
 }
 
