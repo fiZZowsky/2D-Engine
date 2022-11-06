@@ -57,6 +57,12 @@ sf::RectangleShape PrimitiveRenderer::drawPixel(int x, int y, sf::Color color) {
 	return drawRectangle(x, y, 1, 1, color, color);
 }
 
+
+sf::RectangleShape PrimitiveRenderer::drawPixel(Point2D *point, sf::Color color) {
+	return drawRectangle(point->getX(), point->getY(), 1, 1, color, color);
+}
+
+
 sf::VertexArray PrimitiveRenderer::drawLine(int x1, int y1, int x2, int y2, sf::Color color) {
 	sf::VertexArray line(sf::Lines, 2);
 
@@ -237,6 +243,51 @@ void PrimitiveRenderer::myDrawPolygon(sf::RenderWindow* window, std::vector<Line
 	}
 
 	window->draw(drawPolyline(lineSegments, color));
+}
+
+void PrimitiveRenderer::boundryFill(sf::RenderWindow* window, Point2D p, sf::Color fillColor, sf::Color boundryColor) {
+	//making window screenshot to be able to get pixel color
+	sf::Texture texture;
+	sf::Image screenshot;
+
+	texture.create(window->getSize().x, window->getSize().y);
+	texture.update(*window);
+	screenshot = texture.copyToImage();
+
+	//getting pixel color
+	sf::Color pixelColor = screenshot.getPixel(p.getX(), p.getY());
+
+	//if (pixelColor == fillColor) std::cout << "White" << std::endl;
+	//else std::cout << "Inny" << std::endl;
+
+	//iteracyjnie
+	std::vector<Point2D> pointsToFill;
+	pointsToFill.push_back(p);
+
+	while (!pointsToFill.empty()) {
+		//pobranie punktu z kolejki i usuniêcie go z niej
+		p = pointsToFill[pointsToFill.size() - 1];
+		pointsToFill.pop_back();
+		
+		//ustalenie koloru pixela
+		pixelColor = screenshot.getPixel(p.getX(), p.getY());
+
+		//if (pixelColor == sf::Color::Black) std::cout << "Black" << std::endl;
+
+		if (pixelColor== fillColor) continue;
+		if (pixelColor == boundryColor) continue;
+
+		//rysowanie pixela na ekranie
+		window->draw(drawPixel(&p, fillColor));
+
+		//rysowanie pixela na kopii ekranu
+		screenshot.setPixel(p.getX(), p.getY(), fillColor);
+
+		pointsToFill.push_back(Point2D(p.getX(), p.getY() - 1));	//N
+		pointsToFill.push_back(Point2D(p.getX(), p.getY() + 1));	//S
+		pointsToFill.push_back(Point2D(p.getX() + 1, p.getY()));	//W
+		pointsToFill.push_back(Point2D(p.getX() - 1, p.getY()));	//E
+	}
 }
 
 
