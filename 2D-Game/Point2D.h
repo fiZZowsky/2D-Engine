@@ -20,4 +20,5 @@ class Point2D{
 		sf::RectangleShape drawPoint();
 
 		Point2D& operator= (const Point2D& point);
+		bool operator == (const Point2D& point);
 };

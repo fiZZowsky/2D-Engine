@@ -78,36 +78,14 @@ void Engine::render() {
 
 	//============================================================================================
 	// TODO: DELETE THIS LATER
-	//Point2D testPoint(400, 200);
-	//window->draw(testPoint.drawPoint());
 
-	//LineSegment lineSegment(450, 200, 600, 300);
-	////window->draw(lineSegment.draw(sf::Color::Cyan));
-	//lineSegment.drawWithIncrementalAlgorithm(window, sf::Color::Green);
-
+	Point2D p1(100, 100), p2(200, 100), p3(200, 300);
 	std::vector<Point2D> points;
-	Point2D p1(100, 100), p2(200, 100), p3(200, 200), p4(150, 200);
 	points.push_back(p1);
 	points.push_back(p2);
 	points.push_back(p3);
-	points.push_back(p4);
 
-	//window->draw(primitiveRenderer.drawPolyline(points, sf::Color::Blue));
-	//window->draw(primitiveRenderer.drawClosedPolyline(points, sf::Color::Green));
-
-
-	//std::vector<LineSegment> lineSegments;
-	//LineSegment ls1(&p1, &p2), ls2(&p2, &p3);
-	//lineSegments.push_back(ls1);
-	//lineSegments.push_back(ls2);
-
-	//window->draw(primitiveRenderer.drawPolyline(lineSegments, sf::Color::Blue));
-	//window->draw(primitiveRenderer.drawClosedPolyline(lineSegments, sf::Color::Blue));
-
-	primitiveRenderer.myDrawCircle(window, 100, 100, 70);
-	primitiveRenderer.myDrawElipse(window, 300, 100, 100, 50);
-
-
+	primitiveRenderer.myDrawPolygon(window, points, sf::Color::Black);
 
 	//============================================================================================
 
