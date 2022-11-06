@@ -274,8 +274,54 @@ void PrimitiveRenderer::boundryFill(sf::RenderWindow* window, Point2D p, sf::Col
 
 		//if (pixelColor == sf::Color::Black) std::cout << "Black" << std::endl;
 
-		if (pixelColor== fillColor) continue;
+		if (pixelColor == fillColor) continue;
 		if (pixelColor == boundryColor) continue;
+
+		//rysowanie pixela na ekranie
+		window->draw(drawPixel(&p, fillColor));
+
+		//rysowanie pixela na kopii ekranu
+		screenshot.setPixel(p.getX(), p.getY(), fillColor);
+
+		pointsToFill.push_back(Point2D(p.getX(), p.getY() - 1));	//N
+		pointsToFill.push_back(Point2D(p.getX(), p.getY() + 1));	//S
+		pointsToFill.push_back(Point2D(p.getX() + 1, p.getY()));	//W
+		pointsToFill.push_back(Point2D(p.getX() - 1, p.getY()));	//E
+	}
+}
+
+void PrimitiveRenderer::floodFill(sf::RenderWindow* window, Point2D p, sf::Color fillColor) {
+	//making window screenshot to be able to get pixel color
+	sf::Texture texture;
+	sf::Image screenshot;
+
+	texture.create(window->getSize().x, window->getSize().y);
+	texture.update(*window);
+	screenshot = texture.copyToImage();
+
+	//getting pixel color
+	sf::Color pixelColor = screenshot.getPixel(p.getX(), p.getY());
+	sf::Color backgroundColor = pixelColor;
+
+	//if (pixelColor == fillColor) std::cout << "White" << std::endl;
+	//else std::cout << "Inny" << std::endl;
+
+	//iteracyjnie
+	std::vector<Point2D> pointsToFill;
+	pointsToFill.push_back(p);
+
+	while (!pointsToFill.empty()) {
+		//pobranie punktu z kolejki i usuniêcie go z niej
+		p = pointsToFill[pointsToFill.size() - 1];
+		pointsToFill.pop_back();
+
+		//ustalenie koloru pixela
+		pixelColor = screenshot.getPixel(p.getX(), p.getY());
+
+		//if (pixelColor == sf::Color::Black) std::cout << "Black" << std::endl;
+
+		if (pixelColor == fillColor) continue;
+		if (pixelColor != backgroundColor) continue;
 
 		//rysowanie pixela na ekranie
 		window->draw(drawPixel(&p, fillColor));
