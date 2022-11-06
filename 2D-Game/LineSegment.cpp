@@ -14,9 +14,14 @@ int LineSegment::crossProduct(Point2D *x, Point2D *y, Point2D *z)
 }
 
 //sprawdzenie, czy punkt Z(koniec odcinka pierwszego)
-//le¿y na odcinku XY
+//le¿y na odcinku XY 
 bool LineSegment::isPointOnLineSegment(Point2D *x, Point2D *y, Point2D *z)
 {
+	//jezeli punkt Z jest rowny jednemu z koncow odcinka to uznajemy, ze nie lezy na nim
+	if (*z == *x || *z == *y) {
+		return false;
+	}
+
 	return std::min(x->getX(), y->getX()) <= z->getX() && z->getX() <= std::max(x->getX(), y->getX())
 		&& std::min(x->getY(), y->getY()) <= z->getY() && z->getY() <= std::max(x->getY(), y->getY());
 }

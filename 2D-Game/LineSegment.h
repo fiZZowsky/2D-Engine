@@ -13,10 +13,10 @@ private:
 	Point2D* startPoint, * endPoint;
 	PrimitiveRenderer* primitiveRenderer;
 
-public:
-
 	static int crossProduct(Point2D* x, Point2D* y, Point2D* z);
 	static bool isPointOnLineSegment(Point2D* x, Point2D* y, Point2D* z);
+
+public:
 	static bool isLineSegmentsCrossing(LineSegment ls1, LineSegment ls2);
 
 	LineSegment();

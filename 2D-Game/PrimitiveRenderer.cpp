@@ -124,15 +124,6 @@ sf::VertexArray PrimitiveRenderer::drawClosedPolyline(std::vector<LineSegment> l
 }
 
 
-//sf::VertexArray PrimitiveRenderer::drawLine(Point2D start, Point2D end, sf::Color color) {
-//	sf::VertexArray line(sf::Lines, 2);
-//
-//	line[0] = sf::Vertex(sf::Vector2f(start.getX(), start.getY()), color);
-//	line[1] = sf::Vertex(sf::Vector2f(end.getX(), end.getY()), color);
-//
-//	return line;
-//}
-
 void PrimitiveRenderer::myDrawLine(sf::RenderWindow* window, int x0, int y0, int x1, int y1, sf::Color color) {
 	if (x0 > x1) {
 		swap(&x0, &x1);
@@ -209,7 +200,43 @@ void PrimitiveRenderer::myDrawElipse(sf::RenderWindow* window, int x, int y, int
 		window->draw(drawPixel(p1.getX(), p1.getY()));
 		window->draw(drawPixel(p2.getX(), p2.getY()));
 	}
+}
 
+void PrimitiveRenderer::myDrawPolygon(sf::RenderWindow* window, std::vector<Point2D> points, sf::Color color) {
+
+	std::vector<LineSegment> lineSegments;
+
+	//we need at least 3 points to draw polygon
+	if (points.size() < 3) {
+		return;
+	}
+
+	// converting points to line segments
+	for (int i = 1; i < points.size(); i++) {
+		lineSegments.push_back(LineSegment(&points[i - 1], &points[i]));
+	}
+	lineSegments.push_back(LineSegment(&points[points.size() - 1], &points[0]));
+
+	myDrawPolygon(window, lineSegments, color);
+}
+
+void PrimitiveRenderer::myDrawPolygon(sf::RenderWindow* window, std::vector<LineSegment> lineSegments, sf::Color color) {
+
+	//we need at least 3 linesegments to draw polygon
+	if (lineSegments.size() < 3) {
+		return;
+	}
+
+	// checking if line segments are crossing
+	for (int i = 1; i < lineSegments.size(); i++) {
+		for (int j = 0; j < i; j++) {
+			if (LineSegment::isLineSegmentsCrossing(lineSegments[j], lineSegments[i])) {
+				return;
+			}
+		}
+	}
+
+	window->draw(drawPolyline(lineSegments, color));
 }
 
 
