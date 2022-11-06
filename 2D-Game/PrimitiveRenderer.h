@@ -32,6 +32,7 @@ public:
 		sf::Color outlineColor = sf::Color::Black, sf::Color fillColor = sf::Color::Red);
 
 	sf::RectangleShape drawPixel(int x, int y, sf::Color color = sf::Color::Red);
+	sf::RectangleShape drawPixel(Point2D *point, sf::Color color = sf::Color::Red);
 	sf::VertexArray drawLine(int x1, int y1, int x2, int y2, sf::Color color = sf::Color::Red);
 
 	sf::VertexArray drawPolyline(std::vector<Point2D> points, sf::Color color = sf::Color::Red);
@@ -47,6 +48,8 @@ public:
 	void myDrawElipse(sf::RenderWindow* window, int x, int y, int radiusX, int radiusY, sf::Color color = sf::Color::Red);
 	void myDrawPolygon(sf::RenderWindow* window, std::vector<Point2D> points, sf::Color color = sf::Color::Red);
 	void myDrawPolygon(sf::RenderWindow* window, std::vector<LineSegment> lineSegments, sf::Color color = sf::Color::Red);
+
+	void boundryFill(sf::RenderWindow* window, Point2D p, sf::Color fillColor, sf::Color boundryColor);
 
 private:
 	void swap(int* a, int* b);
