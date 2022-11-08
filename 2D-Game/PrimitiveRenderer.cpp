@@ -174,9 +174,9 @@ void PrimitiveRenderer::myDrawLine(sf::RenderWindow* window, int x0, int y0, int
 void PrimitiveRenderer::myDrawCircle(sf::RenderWindow* window, int x, int y, int radius, sf::Color color) {
 	
 	double angleInRadians;
-	Point2D p1, p2;
+	Point2D p1, p2, p3, p4;
 	int tmpX, tmpY;
-	for (int i = 0; i < 180; i++) {
+	for (int i = 0; i < 90; i++) {
 		angleInRadians = (i * M_PI) / 180;
 
 		tmpX = radius * cos(angleInRadians);
@@ -184,17 +184,22 @@ void PrimitiveRenderer::myDrawCircle(sf::RenderWindow* window, int x, int y, int
 
 		p1.setPoint(x + tmpX, y + tmpY);
 		p2.setPoint(x + tmpX, y - tmpY);
+		p3.setPoint(x - tmpX, y + tmpY);
+		p4.setPoint(x - tmpX, y - tmpY);
 
-		window->draw(drawPixel(p1.getX(), p1.getY()));
-		window->draw(drawPixel(p2.getX(), p2.getY()));
+
+		window->draw(drawPixel(p1.getX(), p1.getY(), color));
+		window->draw(drawPixel(p2.getX(), p2.getY(), color));
+		window->draw(drawPixel(p3.getX(), p3.getY(), color));
+		window->draw(drawPixel(p4.getX(), p4.getY(), color));
 	}
 }
 
 void PrimitiveRenderer::myDrawElipse(sf::RenderWindow* window, int x, int y, int radiusX, int radiusY, sf::Color color) {
 	double angleInRadians;
-	Point2D p1, p2;
+	Point2D p1, p2, p3, p4;
 	int tmpX, tmpY;
-	for (int i = 0; i < 180; i++) {
+	for (int i = 0; i < 90; i++) {
 		angleInRadians = (i * M_PI) / 180;
 
 		tmpX = radiusX * cos(angleInRadians);
@@ -202,9 +207,13 @@ void PrimitiveRenderer::myDrawElipse(sf::RenderWindow* window, int x, int y, int
 
 		p1.setPoint(x + tmpX, y + tmpY);
 		p2.setPoint(x + tmpX, y - tmpY);
+		p3.setPoint(x - tmpX, y + tmpY);
+		p4.setPoint(x - tmpX, y - tmpY);
 
-		window->draw(drawPixel(p1.getX(), p1.getY()));
-		window->draw(drawPixel(p2.getX(), p2.getY()));
+		window->draw(drawPixel(p1.getX(), p1.getY(), color));
+		window->draw(drawPixel(p2.getX(), p2.getY(), color));
+		window->draw(drawPixel(p3.getX(), p3.getY(), color));
+		window->draw(drawPixel(p4.getX(), p4.getY(), color));
 	}
 }
 
