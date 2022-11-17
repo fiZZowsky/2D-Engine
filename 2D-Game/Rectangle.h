@@ -1,7 +1,7 @@
 #pragma once
 #include "ShapeObject.h"
 
-class Rectangle : protected virtual ShapeObject
+class Rectangle : public virtual ShapeObject
 {
 
 private:
@@ -11,7 +11,7 @@ public:
 
 	Rectangle(int x, int y, int width, int height, sf::Color color);
 	void draw(sf::RenderWindow* window);
-	void translate();
-	void rotate();
-	void scale();
+	void translate(sf::Vector2f offset);
+	void rotate(float angle);
+	void scale(float factorX, float factorY);
 };

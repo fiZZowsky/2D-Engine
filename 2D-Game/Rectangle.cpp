@@ -10,14 +10,16 @@ void Rectangle::draw(sf::RenderWindow* window) {
 	window->draw(rectangle);
 }
 
-void Rectangle::translate() {
+void Rectangle::translate(sf::Vector2f offset) {
+	rectangle.move(offset);
+}
+
+void Rectangle::rotate(float angle) {
+	rectangle.setRotation(angle);
 
 }
 
-void Rectangle::rotate() {
-
-}
-
-void Rectangle::scale() {
+void Rectangle::scale(float factorX, float factorY) {
+	rectangle.setScale(factorX, factorY);
 
 }
