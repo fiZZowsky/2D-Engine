@@ -1,7 +1,7 @@
 #pragma once
 #include "GameObject.h"
 
-class DrawableObject : protected virtual GameObject
+class DrawableObject : public virtual GameObject
 {
 protected:
 

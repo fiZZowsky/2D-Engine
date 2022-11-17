@@ -93,6 +93,11 @@ void Engine::render() {
 
 	Rectangle rec1(50, 50, 100, 100, sf::Color::Green);
 	rec1.draw(window);
+	Rectangle rec2(50, 50, 100, 100, sf::Color::Blue);
+	rec2.translate(sf::Vector2f(200,200));
+	rec2.rotate(45);
+	rec2.scale(2, 2);
+	rec2.draw(window);
 	//std::cout << rec1
 
 
