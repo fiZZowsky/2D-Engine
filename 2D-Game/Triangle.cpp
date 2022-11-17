@@ -24,3 +24,19 @@ void Triangle::scale(float factorX, float factorY) {
 	triangle.setScale(factorX, factorY);
 
 }
+
+int Triangle::getX() {
+	return triangle.getPosition().x;
+}
+
+int Triangle::getY() {
+	return triangle.getPosition().y;
+}
+
+void Triangle::setX(int x) {
+	triangle.setPosition(x, triangle.getPosition().y);
+}
+
+void Triangle::setY(int y) {
+	triangle.setPosition(triangle.getPosition().x, y);
+}

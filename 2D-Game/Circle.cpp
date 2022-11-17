@@ -21,3 +21,19 @@ void Circle::rotate(float angle) {
 void Circle::scale(float factorX, float factorY) {
 	circle.setScale(factorX, factorY);
 }
+
+int Circle::getX() {
+	return circle.getPosition().x;
+}
+
+int Circle::getY() {
+	return circle.getPosition().y;
+}
+
+void Circle::setX(int x) {
+	circle.setPosition(x, circle.getPosition().y);
+}
+
+void Circle::setY(int y) {
+	circle.setPosition(circle.getPosition().x, y);
+}

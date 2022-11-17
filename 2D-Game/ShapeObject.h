@@ -2,7 +2,7 @@
 #include "DrawableObject.h"
 #include "TransformableObject.h"
 
-class ShapeObject : protected virtual DrawableObject, protected virtual TransformableObject
+class ShapeObject : public virtual DrawableObject, public virtual TransformableObject
 {
 
 };

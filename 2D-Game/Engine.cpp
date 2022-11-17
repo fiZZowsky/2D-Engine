@@ -106,6 +106,7 @@ void Engine::render() {
 
 	Triangle t1(100, 100, 30, sf::Color::Green);
 	t1.rotate(15);
+	t1.setX(500);
 	t1.draw(window);
 
 
