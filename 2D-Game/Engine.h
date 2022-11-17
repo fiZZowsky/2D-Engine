@@ -6,6 +6,7 @@
 #include <vector>
 #include "Settings.h"
 #include "Rectangle.h"
+#include "Circle.h"
 
 
 using namespace sf;

@@ -91,14 +91,18 @@ void Engine::render() {
 	//primitiveRenderer.myDrawCircle(window, 500, 500, 50, sf::Color::Blue);
 	//primitiveRenderer.myDrawElipse(window, 600, 500, 50, 30, sf::Color::Green);
 
-	Rectangle rec1(50, 50, 100, 100, sf::Color::Green);
-	rec1.draw(window);
-	Rectangle rec2(50, 50, 100, 100, sf::Color::Blue);
-	rec2.translate(sf::Vector2f(200,200));
-	rec2.rotate(45);
-	rec2.scale(2, 2);
-	rec2.draw(window);
-	//std::cout << rec1
+	//Rectangle rec1(50, 50, 100, 100, sf::Color::Green);
+	//rec1.draw(window);
+	//Rectangle rec2(50, 50, 100, 100, sf::Color::Blue);
+	//rec2.translate(sf::Vector2f(200,200));
+	//rec2.rotate(45);
+	//rec2.scale(2, 2);
+	//rec2.draw(window);
+	////std::cout << rec1
+
+	Circle c1(100, 100, 30, sf::Color::Blue);
+	c1.scale(2, 2);
+	c1.draw(window);
 
 
 	//============================================================================================
