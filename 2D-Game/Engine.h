@@ -5,6 +5,8 @@
 #include "LineSegment.h"
 #include <vector>
 #include "Settings.h"
+#include "Rectangle.h"
+
 
 using namespace sf;
 

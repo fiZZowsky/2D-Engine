@@ -79,17 +79,21 @@ void Engine::render() {
 	//============================================================================================
 	// TODO: DELETE THIS LATER
 
-	Point2D p1(100, 100), p2(200, 100), p3(200, 300);
-	std::vector<Point2D> points;
-	points.push_back(p1);
-	points.push_back(p2);
-	points.push_back(p3);
+	//Point2D p1(100, 100), p2(200, 100), p3(200, 300);
+	//std::vector<Point2D> points;
+	//points.push_back(p1);
+	//points.push_back(p2);
+	//points.push_back(p3);
 
-	primitiveRenderer.myDrawPolygon(window, points, sf::Color::Black);
-	primitiveRenderer.floodFill(window, Point2D(150, 150), sf::Color::Yellow);
-	//primitiveRenderer.boundryFill(window, Point2D(150, 150), sf::Color::Blue, sf::Color::Black);
-	primitiveRenderer.myDrawCircle(window, 500, 500, 50, sf::Color::Blue);
-	primitiveRenderer.myDrawElipse(window, 600, 500, 50, 30, sf::Color::Green);
+	//primitiveRenderer.myDrawPolygon(window, points, sf::Color::Black);
+	//primitiveRenderer.floodFill(window, Point2D(150, 150), sf::Color::Yellow);
+	////primitiveRenderer.boundryFill(window, Point2D(150, 150), sf::Color::Blue, sf::Color::Black);
+	//primitiveRenderer.myDrawCircle(window, 500, 500, 50, sf::Color::Blue);
+	//primitiveRenderer.myDrawElipse(window, 600, 500, 50, 30, sf::Color::Green);
+
+	Rectangle rec1(50, 50, 100, 100, sf::Color::Green);
+	rec1.draw(window);
+	//std::cout << rec1
 
 
 	//============================================================================================
