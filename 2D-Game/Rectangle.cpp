@@ -23,3 +23,19 @@ void Rectangle::scale(float factorX, float factorY) {
 	rectangle.setScale(factorX, factorY);
 
 }
+
+int Rectangle::getX() {
+	return rectangle.getPosition().x;
+}
+
+int Rectangle::getY() {
+	return rectangle.getPosition().y;
+}
+
+void Rectangle::setX(int x) {
+	rectangle.setPosition(x, rectangle.getPosition().y);
+}
+
+void Rectangle::setY(int y) {
+	rectangle.setPosition(rectangle.getPosition().x, y);
+}

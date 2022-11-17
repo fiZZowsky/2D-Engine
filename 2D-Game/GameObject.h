@@ -3,13 +3,10 @@
 
 class GameObject
 {
-protected:
-	int x, y;
+public:
+	virtual int getX() = 0;
+	virtual int getY() = 0;
 
-	void setX(int x);
-	void setY(int y);
-
-	int getX();
-	int getY();
-
+	virtual void setX(int x) = 0;
+	virtual void setY(int y) = 0;
 };
