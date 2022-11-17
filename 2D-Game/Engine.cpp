@@ -100,9 +100,13 @@ void Engine::render() {
 	//rec2.draw(window);
 	////std::cout << rec1
 
-	Circle c1(100, 100, 30, sf::Color::Blue);
+	/*Circle c1(100, 100, 30, sf::Color::Blue);
 	c1.scale(2, 2);
-	c1.draw(window);
+	c1.draw(window);*/
+
+	Triangle t1(100, 100, 30, sf::Color::Green);
+	t1.rotate(15);
+	t1.draw(window);
 
 
 	//============================================================================================

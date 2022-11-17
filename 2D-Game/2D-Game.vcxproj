@@ -28,6 +28,7 @@
     <ClCompile Include="Point2D.cpp" />
     <ClCompile Include="PrimitiveRenderer.cpp" />
     <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle.h" />
@@ -42,6 +43,7 @@
     <ClInclude Include="Settings.h" />
     <ClInclude Include="ShapeObject.h" />
     <ClInclude Include="TransformableObject.h" />
+    <ClInclude Include="Triangle.h" />
     <ClInclude Include="UpdatableObject.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
