@@ -9,6 +9,7 @@
 #include "Circle.h"
 #include "Triangle.h"
 #include "Polygon.h"
+#include "Player.h"
 
 
 using namespace sf;
@@ -22,12 +23,14 @@ public:
 	virtual ~Engine();
 
 	sf::RenderWindow* window;
-
 	//Functions
 	void run();
+	float getDeltaTime();
 
 private:	
 	sf::Clock clock;
+	float deltaTime;
+
 
 	//Private functions
 	void initWindow(int windowMode);
@@ -37,7 +40,6 @@ private:
 
 	/*void input();*/
 	PrimitiveRenderer primitiveRenderer;
-
-
+	Player player;
 	
 };

@@ -8,23 +8,22 @@ Engine::~Engine() {
 	delete this->window;
 }
 
-//Functions
+
 void Engine::run() {
-	int fps;
 	clock = sf::Clock::Clock();
-	sf::Time prevTime = clock.getElapsedTime();
+	sf::Time prevTime;
 	sf::Time curTime;
 
 	// Main Loop
 	while (this->window->isOpen()) {
+		prevTime = clock.getElapsedTime();;
+
 		this->update();
 		this->render();
 
 		//FPS counter
 		curTime = clock.getElapsedTime();
-		fps = 1.0f / (curTime.asSeconds() - prevTime.asSeconds());
-		/*std::cout << fps << std::endl;*/
-		prevTime = curTime;
+		this->deltaTime = curTime.asSeconds() - prevTime.asSeconds();
 	}
 }
 
@@ -67,6 +66,12 @@ void Engine::update() {
 void Engine::render() {
 	this->window->clear(sf::Color::White);
 
+	player.update(deltaTime);
+	//Player p1(200, 200);
+	//p1.draw(window);
+	player.draw(window);
+
+
 	//Point2D p1(100, 100), p2(200, 100), p3(200, 300);
 	//std::vector<Point2D> points;
 	//points.push_back(p1);
@@ -98,13 +103,13 @@ void Engine::render() {
 	p1.rotate(90, point);
 	p1.draw(window);*/
 
-	LineSegment ls1(300, 100, 300, 300, sf::Color::Red), ls2(300, 100, 300, 300, sf::Color::Blue);
-	Point2D point(250, 200);
-	sf::Vector2f x0(250, 200);
-	point.draw(window);
-	//ls1.scale(3, x0);
-	ls1.rotate(90, x0);
-	ls1.draw(window);
+	//LineSegment ls1(300, 100, 300, 300, sf::Color::Red), ls2(300, 100, 300, 300, sf::Color::Blue);
+	//Point2D point(250, 200);
+	//sf::Vector2f x0(250, 200);
+	//point.draw(window);
+	////ls1.scale(3, x0);
+	//ls1.rotate(90, x0);
+	//ls1.draw(window);
 	//ls2.draw(window);
 
 	//LineSegment ls1(300, 100, 300, 300, sf::Color::Red);
