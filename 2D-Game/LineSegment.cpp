@@ -1,9 +1,5 @@
 #include "LineSegment.h"
 
-LineSegment::LineSegment() {
-	startPoint = new Point2D(0, 0);
-	endPoint = new Point2D(1, 0);
-}
 
 // iloczyn wektorowy
 int LineSegment::crossProduct(Point2D *x, Point2D *y, Point2D *z)
@@ -54,14 +50,99 @@ bool LineSegment::isLineSegmentsCrossing(LineSegment ls1, LineSegment ls2) {
 	return false;
 }
 
+LineSegment::LineSegment() {
+	startPoint = new Point2D(0, 0);
+	endPoint = new Point2D(1, 0);
+
+	this->segment.setPrimitiveType(sf::LineStrip);
+	this->segment.resize(2);
+
+	updateSegment();
+}
+
 LineSegment::LineSegment(Point2D* startPoint, Point2D* endPoint) {
 	this->startPoint = startPoint;
 	this->endPoint = endPoint;
+
+	this->segment.setPrimitiveType(sf::LineStrip);
+	this->segment.resize(2);
+
+	updateSegment();
+}
+
+LineSegment::LineSegment(Point2D* startPoint, Point2D* endPoint, sf::Color color) {
+	this->startPoint = startPoint;
+	this->endPoint = endPoint;
+	this->color = color;
+
+	this->segment.setPrimitiveType(sf::LineStrip);
+	this->segment.resize(2);
+
+	segment[0].position = sf::Vector2f(startPoint->getX(), startPoint->getY());
+	segment[0].color = color;
+	segment[1].position = sf::Vector2f(endPoint->getX(), endPoint->getY());
+	segment[1].color = color;
 }
 
 LineSegment::LineSegment(int x1, int y1, int x2, int y2) {
 	startPoint = new Point2D(x1, y1);
 	endPoint = new Point2D(x2, y2);
+
+	this->segment.setPrimitiveType(sf::LineStrip);
+	this->segment.resize(2);
+
+	updateSegment();
+}
+
+LineSegment::LineSegment(int x1, int y1, int x2, int y2, sf::Color color) {
+	startPoint = new Point2D(x1, y1);
+	endPoint = new Point2D(x2, y2);
+	this->color = color;
+
+	this->segment.setPrimitiveType(sf::LineStrip);
+	this->segment.resize(2);
+
+	segment[0].position = sf::Vector2f(startPoint->getX(), startPoint->getY());
+	segment[0].color = color;
+	segment[1].position = sf::Vector2f(endPoint->getX(), endPoint->getY());
+	segment[1].color = color;
+}
+
+void LineSegment::draw(sf::RenderWindow* window) {
+	window->draw(segment);
+}
+void LineSegment::translate(sf::Vector2f offset) {
+	startPoint->translate(offset);
+	endPoint->translate(offset);
+
+	updateSegment();
+}
+void LineSegment::rotate(float angle, sf::Vector2f point) {
+	startPoint->rotate(angle, point);
+	endPoint->rotate(angle, point);
+
+	updateSegment();
+}
+
+void LineSegment::scale(float k, sf::Vector2f point) {
+	int x2a = startPoint->getX() * k + (1 - k) * point.x;
+	int y2a = startPoint->getY() * k + (1 - k) * point.y;
+
+	int x2b = endPoint->getX() * k + (1 - k) * point.x;
+	int y2b = endPoint->getY() * k + (1 - k) * point.y;
+
+	startPoint->setX(x2a);
+	startPoint->setY(y2a);
+
+	endPoint->setX(x2b);
+	endPoint->setY(y2b);
+	
+	updateSegment();
+}
+
+void LineSegment::updateSegment() {
+	segment[0].position = sf::Vector2f(startPoint->getX(), startPoint->getY());
+	segment[1].position = sf::Vector2f(endPoint->getX(), endPoint->getY());
 }
 
 Point2D* LineSegment::getStartPoint() {
@@ -78,6 +159,13 @@ void LineSegment::setEndPoint(Point2D* point) {
 	this->endPoint = point;
 }
 
+sf::Color LineSegment::getColor() {
+	return color;
+}
+void LineSegment::setColor(sf::Color color) {
+	this->color = color;
+}
+
 sf::VertexArray LineSegment::draw(sf::Color color) {
 	return primitiveRenderer->drawLine(startPoint->getX(), startPoint->getY(), endPoint->getX(), endPoint->getY(), color);
 }
@@ -85,3 +173,18 @@ sf::VertexArray LineSegment::draw(sf::Color color) {
 void LineSegment::drawWithIncrementalAlgorithm(sf::RenderWindow* window, sf::Color color) {
 	primitiveRenderer->myDrawLine(window, startPoint->getX(), startPoint->getY(), endPoint->getX(), endPoint->getY(), color);
 }
+
+
+int LineSegment::getX() {
+	return startPoint->getX();
+};
+
+int LineSegment::getY() {
+	return startPoint->getY();
+};
+void LineSegment::setX(int x) {
+	startPoint->setX(x);
+};
+void LineSegment::setY(int y) {
+	startPoint->setY(y);
+};

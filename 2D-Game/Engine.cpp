@@ -80,7 +80,7 @@ void Engine::render() {
 	//primitiveRenderer.myDrawElipse(window, 600, 500, 50, 30, sf::Color::Green);
 
 
-	Triangle t1(100, 100, 30, sf::Color::Green);
+	/*Triangle t1(100, 100, 30, sf::Color::Green);
 	t1.rotate(15);
 	t1.setX(500);
 	t1.draw(window);
@@ -88,6 +88,30 @@ void Engine::render() {
 	Polygon p1(300, 300, 7, 50, sf::Color::Yellow);
 	p1.rotate(15);
 	p1.draw(window);
+
+	LineSegment(10, 10, 50, 50);*/
+
+	/*Point2D p1(50, 50, sf::Color::Blue), p2(50, 100);
+	sf::Vector2f point(50, 100);
+
+	p2.draw(window);
+	p1.rotate(90, point);
+	p1.draw(window);*/
+
+	LineSegment ls1(300, 100, 300, 300, sf::Color::Red), ls2(300, 100, 300, 300, sf::Color::Blue);
+	Point2D point(250, 200);
+	sf::Vector2f x0(250, 200);
+	point.draw(window);
+	//ls1.scale(3, x0);
+	ls1.rotate(90, x0);
+	ls1.draw(window);
+	//ls2.draw(window);
+
+	//LineSegment ls1(300, 100, 300, 300, sf::Color::Red);
+	//ls1.translate(sf::Vector2f(400, 400));
+	//ls1.draw(window);
+	
+
 
 
 

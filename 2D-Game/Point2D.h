@@ -29,7 +29,7 @@ class Point2D : public virtual ShapeObject{
 
 		void draw(sf::RenderWindow* window);
 		void translate(sf::Vector2f offset);
-		void rotate(float angle);
+		void rotate(float angle, sf::Vector2f point);
 		void scale(float factorX, float factorY);
 
 

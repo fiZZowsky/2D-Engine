@@ -27,8 +27,11 @@ void Point2D::translate(sf::Vector2f offset) {
 	point.move(offset);
 }
 
-void Point2D::rotate(float angle) {
-	point.setRotation(angle);
+void Point2D::rotate(float angle, sf::Vector2f point) {
+	angle = (angle * M_PI) / 180;
+	int x2 = point.x + (this->point.getPosition().x - point.x) * cos(angle) - (this->point.getPosition().y - point.y) * sin(angle);
+	int y2 = point.y + (this->point.getPosition().x - point.x) * sin(angle) + (this->point.getPosition().y - point.y) * cos(angle);
+	this->point.setPosition(x2, y2);
 }
 
 void Point2D::scale(float factorX, float factorY) {
