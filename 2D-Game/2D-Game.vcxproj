@@ -25,6 +25,7 @@
     <ClCompile Include="LineSegment.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Point2D.cpp" />
+    <ClCompile Include="Polygon.cpp" />
     <ClCompile Include="PrimitiveRenderer.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Triangle.cpp" />
@@ -37,6 +38,7 @@
     <ClInclude Include="Headers.h" />
     <ClInclude Include="LineSegment.h" />
     <ClInclude Include="Point2D.h" />
+    <ClInclude Include="Polygon.h" />
     <ClInclude Include="PrimitiveRenderer.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Settings.h" />

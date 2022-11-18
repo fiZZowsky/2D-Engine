@@ -69,6 +69,7 @@ sf::VertexArray PrimitiveRenderer::drawLine(int x1, int y1, int x2, int y2, sf::
 	line[0] = sf::Vertex(sf::Vector2f(x1, y1), color);
 	line[1] = sf::Vertex(sf::Vector2f(x2, y2), color);
 
+
 	return line;
 }
 

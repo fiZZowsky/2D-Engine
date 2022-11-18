@@ -67,47 +67,15 @@ void Engine::update() {
 void Engine::render() {
 	this->window->clear(sf::Color::White);
 
-	//Draw all the stuffs
-	//window->draw(primitiveRenderer.drawRectangle(80, 400, 200, 50));
-	//window->draw(primitiveRenderer.drawCircle(300, 300, 40));
-	//window->draw(primitiveRenderer.drawTriangle(50, 50, 30));
-	//window->draw(primitiveRenderer.drawPolygon(100, 150, 40, 7));
-	//window->draw(primitiveRenderer.drawSFMLLine(500, 500, 150, 45));
-	//window->draw(primitiveRenderer.drawLine(300, 100, 400, 200));
-	//primitiveRenderer.myDrawLine(window, 300, 120, 400, 220, sf::Color::Green);
-
-	//============================================================================================
-	// TODO: DELETE THIS LATER
-
-	//Point2D p1(100, 100), p2(200, 100), p3(200, 300);
-	//std::vector<Point2D> points;
-	//points.push_back(p1);
-	//points.push_back(p2);
-	//points.push_back(p3);
-
-	//primitiveRenderer.myDrawPolygon(window, points, sf::Color::Black);
-	//primitiveRenderer.floodFill(window, Point2D(150, 150), sf::Color::Yellow);
-	////primitiveRenderer.boundryFill(window, Point2D(150, 150), sf::Color::Blue, sf::Color::Black);
-	//primitiveRenderer.myDrawCircle(window, 500, 500, 50, sf::Color::Blue);
-	//primitiveRenderer.myDrawElipse(window, 600, 500, 50, 30, sf::Color::Green);
-
-	//Rectangle rec1(50, 50, 100, 100, sf::Color::Green);
-	//rec1.draw(window);
-	//Rectangle rec2(50, 50, 100, 100, sf::Color::Blue);
-	//rec2.translate(sf::Vector2f(200,200));
-	//rec2.rotate(45);
-	//rec2.scale(2, 2);
-	//rec2.draw(window);
-	////std::cout << rec1
-
-	/*Circle c1(100, 100, 30, sf::Color::Blue);
-	c1.scale(2, 2);
-	c1.draw(window);*/
 
 	Triangle t1(100, 100, 30, sf::Color::Green);
 	t1.rotate(15);
 	t1.setX(500);
 	t1.draw(window);
+
+	Polygon p1(300, 300, 7, 50, sf::Color::Yellow);
+	p1.rotate(15);
+	p1.draw(window);
 
 
 	//============================================================================================

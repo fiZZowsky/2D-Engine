@@ -8,6 +8,7 @@
 #include "Rectangle.h"
 #include "Circle.h"
 #include "Triangle.h"
+#include "Polygon.h"
 
 
 using namespace sf;
