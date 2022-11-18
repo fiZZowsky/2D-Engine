@@ -17,8 +17,8 @@ void Triangle::translate(sf::Vector2f offset) {
 
 void Triangle::rotate(float angle) {
 	triangle.setRotation(angle);
-
 }
+
 
 void Triangle::scale(float factorX, float factorY) {
 	triangle.setScale(factorX, factorY);
