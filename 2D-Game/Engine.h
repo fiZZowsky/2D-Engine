@@ -10,6 +10,7 @@
 #include "Triangle.h"
 #include "Polygon.h"
 #include "Player.h"
+#include "BitmapHandler.h"
 
 
 using namespace sf;
