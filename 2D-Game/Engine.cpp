@@ -80,6 +80,14 @@ void Engine::render() {
 	//p1.draw(window);
 	player.draw(window);
 
+	BitmapHandler bh;
+	sf::Texture texture;
+	texture.loadFromImage(bh.create(300, 300, sf::Color::Blue));
+	sf::Sprite sprite;
+	sprite.setTexture(texture);
+
+	window->draw(sprite);
+
 
 	//Point2D p1(100, 100), p2(200, 100), p3(200, 300);
 	//std::vector<Point2D> points;

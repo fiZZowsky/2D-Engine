@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BitmapHandler.cpp" />
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Input.cpp" />
@@ -32,6 +33,7 @@
     <ClCompile Include="Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BitmapHandler.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="DrawableObject.h" />
     <ClInclude Include="Engine.h" />
