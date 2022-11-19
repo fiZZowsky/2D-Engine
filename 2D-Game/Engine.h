@@ -18,16 +18,11 @@ enum WindowMode {FULLSCREEN, WINDOWED, CUSTOM};
 
 class Engine {
 
-public:
+protected:
+	static Engine* instance;
 	Engine();
 	virtual ~Engine();
 
-	sf::RenderWindow* window;
-	//Functions
-	void run();
-	float getDeltaTime();
-
-private:	
 	sf::Clock clock;
 	float deltaTime;
 
@@ -41,5 +36,14 @@ private:
 	/*void input();*/
 	PrimitiveRenderer primitiveRenderer;
 	Player player;
+
+public:
+	static Engine *getInstance();
+
+	sf::RenderWindow* window;
+	//Functions
+	void run();
+	float getDeltaTime();
+
 	
 };

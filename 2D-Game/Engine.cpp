@@ -1,11 +1,20 @@
 #include "Engine.h"
 
+Engine* Engine::instance = nullptr;
+
 Engine::Engine() {
 	this->initWindow(WINDOWED);
 }
 
 Engine::~Engine() {
 	delete this->window;
+}
+
+Engine* Engine::getInstance() {
+	if ( instance == nullptr) {
+		instance = new Engine();
+	}
+	return instance;
 }
 
 
