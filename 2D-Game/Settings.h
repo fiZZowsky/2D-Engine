@@ -17,3 +17,5 @@ constexpr unsigned short SCREEN_HEIGHT_HD = 720;
 constexpr std::chrono::microseconds FRAME_DURATION_120(8333); //120FPS
 constexpr std::chrono::microseconds FRAME_DURATION_60(16667); //60FPS
 constexpr std::chrono::microseconds FRAME_DURATION_30(33333); //30FPS
+
+constexpr unsigned short FPS_LIMIT = 60;

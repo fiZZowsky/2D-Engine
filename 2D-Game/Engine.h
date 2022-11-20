@@ -37,7 +37,6 @@ protected:
 
 	/*void input();*/
 	PrimitiveRenderer primitiveRenderer;
-	Player player;
 
 public:
 	static Engine *getInstance();
@@ -46,6 +45,9 @@ public:
 	//Functions
 	void run();
 	float getDeltaTime();
+
+	void initPlayer();
+	SpriteObject player;
 
 	
 };

@@ -37,9 +37,25 @@ void Engine::run() {
 }
 
 
+//TODO: delete this latter
+void Engine::initPlayer() {
+	sf::Image image, im2;
+	image.loadFromFile("Bitmaps/p1.png");
+	im2.loadFromFile("Bitmaps/t1.png");
+
+	std::vector<sf::Image> bitmaps;
+	bitmaps.push_back(image);
+	bitmaps.push_back(im2);
+
+	player = SpriteObject(bitmaps);
+}
+
 //Private functions
 void Engine::initWindow(int windowMode) {
 	Vector2f resolution;
+
+	//TODO: delete this
+	initPlayer();
 
 	resolution.x = VideoMode::getDesktopMode().width;
 	resolution.y = VideoMode::getDesktopMode().height;
@@ -57,6 +73,7 @@ void Engine::initWindow(int windowMode) {
 	}
 
 	this->window->setVerticalSyncEnabled(true);
+	this->window->setFramerateLimit(FPS_LIMIT);
 }
 
 void Engine::update() {
@@ -74,6 +91,11 @@ void Engine::update() {
 
 void Engine::render() {
 	this->window->clear(sf::Color::White);
+
+	//window->draw(player.sprites[0]);
+
+	//player.draw(window);
+	player.animate(window);
 
 
 
