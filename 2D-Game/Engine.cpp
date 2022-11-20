@@ -75,15 +75,51 @@ void Engine::update() {
 void Engine::render() {
 	this->window->clear(sf::Color::White);
 
-	player.update(deltaTime);
-	//Player p1(200, 200);
-	//p1.draw(window);
-	player.draw(window);
 
-	BitmapHandler bh;
-	sf::Texture texture;
+
+
+	/*sf::Image image, im2;
+	image.loadFromFile("Bitmaps/p1.png");
+	im2.loadFromFile("Bitmaps/t1.png");
+
+	std::vector<sf::Image> bitmaps;
+	bitmaps.push_back(image);
+	bitmaps.push_back(im2);
+
+	BitmapObject bo(bitmaps);
+	bo.changeToNextBitmap();
+	bo.changeToNextBitmap();
+	bo.draw(window);*/
+
+	//sf::Texture texture;
+	//texture.loadFromImage(image);
+	//sf::Sprite sprite(texture);
+
+	////window->draw(sprite);
+
+	//BitmapObject bo(image);
+	////sf::Texture tx1;
+	////tx1.loadFromImage(bo.bitmaps[0]);
+	////sf::Sprite sp1(bo.textures[0]);
+	////window->draw(sp1);
+
+	////SpriteObject tmp(image);
+
+
+
+	//player.update(deltaTime);
+	////Player p1(200, 200);
+	////p1.draw(window);
+	//player.draw(window);
+
+	//BitmapHandler bh;
+	//sf::Texture texture;
+	// 
+	
+
+
 	//sf::Image bitmap = bh.create(300, 300, sf::Color::Blue);
-	sf::Image bitmap, t1, t2;
+	/*sf::Image bitmap, t1, t2;
 	bh.loadFromFile(&bitmap, "Bitmaps/bitmap-test.png");
 	bh.flipHorizontally(&bitmap);
 	bh.saveToFile(bitmap, "Bitmaps/bitmap-saved.png");
@@ -101,7 +137,7 @@ void Engine::render() {
 	sf::Sprite sprite;
 	sprite.setTexture(texture);
 
-	window->draw(sprite);
+	window->draw(sprite);*/
 
 
 	//Point2D p1(100, 100), p2(200, 100), p3(200, 300);

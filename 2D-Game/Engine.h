@@ -11,7 +11,8 @@
 #include "Polygon.h"
 #include "Player.h"
 #include "BitmapHandler.h"
-
+#include "BitmapObject.h"
+#include "SpriteObject.h"
 
 using namespace sf;
 
