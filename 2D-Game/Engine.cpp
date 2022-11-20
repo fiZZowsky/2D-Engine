@@ -82,7 +82,11 @@ void Engine::render() {
 
 	BitmapHandler bh;
 	sf::Texture texture;
-	texture.loadFromImage(bh.create(300, 300, sf::Color::Blue));
+	//sf::Image bitmap = bh.create(300, 300, sf::Color::Blue);
+	sf::Image bitmap;
+	bh.loadFromFile(&bitmap, "bitmap-test.png");
+	bh.saveToFile(bitmap, "bitmap-saved.png");
+	texture.loadFromImage(bitmap);
 	sf::Sprite sprite;
 	sprite.setTexture(texture);
 
