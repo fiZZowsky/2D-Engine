@@ -83,9 +83,20 @@ void Engine::render() {
 	BitmapHandler bh;
 	sf::Texture texture;
 	//sf::Image bitmap = bh.create(300, 300, sf::Color::Blue);
-	sf::Image bitmap;
-	bh.loadFromFile(&bitmap, "bitmap-test.png");
-	bh.saveToFile(bitmap, "bitmap-saved.png");
+	sf::Image bitmap, t1, t2;
+	bh.loadFromFile(&bitmap, "Bitmaps/bitmap-test.png");
+	bh.flipHorizontally(&bitmap);
+	bh.saveToFile(bitmap, "Bitmaps/bitmap-saved.png");
+
+	bh.loadFromFile(&t1, "t1.png");
+	bh.loadFromFile(&t2, "t2.png");
+
+	bh.remove(&t2);
+
+
+
+	bh.copy(&t1, &bitmap);
+
 	texture.loadFromImage(bitmap);
 	sf::Sprite sprite;
 	sprite.setTexture(texture);
