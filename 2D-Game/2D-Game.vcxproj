@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BitmapHandler.cpp" />
+    <ClCompile Include="BitmapObject.cpp" />
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Input.cpp" />
@@ -30,10 +31,13 @@
     <ClCompile Include="Polygon.cpp" />
     <ClCompile Include="PrimitiveRenderer.cpp" />
     <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="SpriteObject.cpp" />
     <ClCompile Include="Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimatedObject.h" />
     <ClInclude Include="BitmapHandler.h" />
+    <ClInclude Include="BitmapObject.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="DrawableObject.h" />
     <ClInclude Include="Engine.h" />
@@ -48,6 +52,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="ShapeObject.h" />
+    <ClInclude Include="SpriteObject.h" />
     <ClInclude Include="TransformableObject.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="UpdatableObject.h" />
