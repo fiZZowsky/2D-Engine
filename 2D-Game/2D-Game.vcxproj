@@ -45,11 +45,15 @@
     <ClInclude Include="Polygon.h" />
     <ClInclude Include="PrimitiveRenderer.h" />
     <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="ShapeObject.h" />
     <ClInclude Include="TransformableObject.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="UpdatableObject.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="2D-Game-Engine.rc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
