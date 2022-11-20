@@ -18,5 +18,4 @@ public:
 
 	void animate(sf::RenderWindow* window);
 
-	
 };

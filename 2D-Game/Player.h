@@ -1,16 +1,16 @@
 #pragma once
-#include "DrawableObject.h"
+#include "SpriteObject.h"
 
-class Player: public virtual DrawableObject
+class Player: public virtual SpriteObject
 {
 private:
 	static const int PLAYER_SPEED = 500;
 	int x, y;
-	sf::RectangleShape playerBox;
+	int isMoving;
 
 public:
 	Player();
-	Player(int x, int y);
+	Player(int x, int y, std::vector<sf::Image> bitmaps);
 
 	int getX();
 	int getY();
@@ -20,8 +20,6 @@ public:
 
 	void update(float deltaTime);
 	void move(float deltaTime);
+	void drawPlayer(sf::RenderWindow *window);
 
-	void draw(sf::RenderWindow* window);
-
-	void updatePlayerBox();
 };

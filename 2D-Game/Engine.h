@@ -35,7 +35,6 @@ protected:
 	void update();
 	void render();
 
-	/*void input();*/
 	PrimitiveRenderer primitiveRenderer;
 
 public:
@@ -47,7 +46,5 @@ public:
 	float getDeltaTime();
 
 	void initPlayer();
-	SpriteObject player;
-
-	
+	Player player;
 };

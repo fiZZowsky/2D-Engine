@@ -53,3 +53,9 @@ void BitmapObject::changeToNextBitmap() {
 	counter++;
 	manageCounter();
 }
+
+void BitmapObject::updateSpritesPosition(int x, int y) {
+	for (int i = 0; i < sprites.size(); i++) {
+		sprites[i].setPosition(x, y);
+	}
+}

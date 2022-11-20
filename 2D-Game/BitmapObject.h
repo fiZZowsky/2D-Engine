@@ -22,6 +22,7 @@ public:
 
 	void draw(sf::RenderWindow* window);
 	void changeToNextBitmap();
+	void updateSpritesPosition(int x, int y);
 
 
 };
