@@ -6,6 +6,8 @@ void BitmapObject::manageCounter() {
 	}
 }
 
+BitmapObject::BitmapObject() {};
+
 BitmapObject::BitmapObject(sf::Image bitmap) {
 	counter = 0;
 
@@ -40,7 +42,9 @@ BitmapObject::BitmapObject(std::vector<sf::Image> bitmaps) {
 
 void BitmapObject::draw(sf::RenderWindow* window) {
 
+	//TODO: delete this
 	std::cout << counter << std::endl;
+
 	//std::cout << sprites.size() << std::endl;
 	window->draw(sprites[counter]);
 }

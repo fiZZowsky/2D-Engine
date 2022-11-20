@@ -4,7 +4,7 @@
 
 class BitmapObject : public virtual DrawableObject
 {
-private:
+public:
 
 	std::vector<sf::Image> bitmaps;
 	std::vector<sf::Texture> textures;
@@ -15,6 +15,7 @@ private:
 	void manageCounter();
 
 public: 
+	BitmapObject();
 	BitmapObject(sf::Image bitmap);
 	BitmapObject(std::vector<sf::Image> bitmaps);
 

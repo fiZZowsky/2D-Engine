@@ -2,5 +2,5 @@
 
 class AnimatedObject
 {
-	virtual void animate() = 0;
+	virtual void animate(sf::RenderWindow* window) = 0;
 };
