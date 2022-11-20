@@ -39,15 +39,19 @@ void Engine::run() {
 
 //TODO: delete this latter
 void Engine::initPlayer() {
-	sf::Image image, im2;
-	image.loadFromFile("Bitmaps/p1.png");
-	im2.loadFromFile("Bitmaps/t1.png");
+	sf::Image p1, p2, p3, p4;
+	p1.loadFromFile("Bitmaps/p1.png");
+	p2.loadFromFile("Bitmaps/p2.png");
+	p3.loadFromFile("Bitmaps/p3.png");
+	p4.loadFromFile("Bitmaps/p4.png");
 
 	std::vector<sf::Image> bitmaps;
-	bitmaps.push_back(image);
-	bitmaps.push_back(im2);
+	bitmaps.push_back(p1);
+	bitmaps.push_back(p2);
+	bitmaps.push_back(p3);
+	bitmaps.push_back(p4);
 
-	player = SpriteObject(bitmaps);
+	player = Player(0, 0, bitmaps);
 }
 
 //Private functions
@@ -79,6 +83,8 @@ void Engine::initWindow(int windowMode) {
 void Engine::update() {
 	Event event;
 
+	player.update(deltaTime);
+
 	while (this->window->pollEvent(event)) {
 		if (event.Event::type == Event::Closed) {
 			this->window->close();
@@ -91,11 +97,8 @@ void Engine::update() {
 
 void Engine::render() {
 	this->window->clear(sf::Color::White);
-
-	//window->draw(player.sprites[0]);
-
-	//player.draw(window);
-	player.animate(window);
+	
+	player.drawPlayer(window);
 
 
 
