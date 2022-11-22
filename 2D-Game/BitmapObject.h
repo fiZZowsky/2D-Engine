@@ -9,7 +9,7 @@ public:
 	std::vector<sf::Image> bitmaps;
 	std::vector<sf::Texture> textures;
 	std::vector<sf::Sprite> sprites;
-
+	
 	int counter;
 
 	void manageCounter();

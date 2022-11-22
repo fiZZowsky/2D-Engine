@@ -22,6 +22,10 @@ void BitmapHandler::copy(sf::Image* src, sf::Image *dst) {
 	dst->copy(*src, 0, 0);
 }
 
+void BitmapHandler::copy(sf::Image* src, sf::Image* dst, sf::IntRect rect) {
+	dst->copy(*src, 0, 0, rect);
+}
+
 void BitmapHandler::flipHorizontally(sf::Image* bitmap) {
 	bitmap->flipHorizontally();
 }

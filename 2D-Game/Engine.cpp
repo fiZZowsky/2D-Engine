@@ -98,7 +98,18 @@ void Engine::update() {
 void Engine::render() {
 	this->window->clear(sf::Color::White);
 	
-	player.drawPlayer(window);
+	//player.drawPlayer(window);
+
+	std::vector<sf::Sprite> sprites;
+	SpritesManager spritesManager;
+
+	sprites = spritesManager.loadSpritesFromFile("Bitmaps/spritesheet.png", 4, 4, 4);
+
+
+	for (int i = 0; i < sprites.size(); i++) {
+		sprites[i].setPosition(i * 64, 50);
+		window->draw(sprites[i]);
+	}
 
 
 

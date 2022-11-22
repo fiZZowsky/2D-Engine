@@ -53,7 +53,6 @@ void Player::move(float deltaTime) {
 }
 
 void Player::drawPlayer(sf::RenderWindow *window) {
-	//animate(window);
 	if (isMoving) {
 		animate(window);
 	}
