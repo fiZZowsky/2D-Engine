@@ -13,6 +13,7 @@
 #include "BitmapHandler.h"
 #include "BitmapObject.h"
 #include "SpriteObject.h"
+#include "SpritesManager.h"
 
 using namespace sf;
 
