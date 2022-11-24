@@ -5,6 +5,5 @@ int main() {
 
 	engine -> run();
 
-	//End of application
 	return 0;
 }

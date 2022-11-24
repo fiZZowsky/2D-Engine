@@ -13,7 +13,6 @@ void SpriteObject::animate(sf::RenderWindow *window) {
 
 	framesCounter++;
 
-	std::cout << "framesCounter: " << framesCounter << std::endl;
 	if (framesCounter >= (FPS_LIMIT / FRAMES_SPEED)) {
 		framesCounter = 0;
 		changeToNextBitmap();

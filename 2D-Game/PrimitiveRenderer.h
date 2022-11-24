@@ -16,7 +16,7 @@ public:
 	PrimitiveRenderer();
 	~PrimitiveRenderer();
 
-	Point2D *point; //need pointers to work
+	Point2D *point;
 		
 
 	sf::RectangleShape drawRectangle(int x, int y, int width, int height,
@@ -40,7 +40,6 @@ public:
 
 	sf::VertexArray drawClosedPolyline(std::vector<Point2D> points, sf::Color color = sf::Color::Red);
 	sf::VertexArray drawClosedPolyline(std::vector<LineSegment> lineSegments, sf::Color color = sf::Color::Red);
-	//sf::VertexArray drawLine(Point2D start, Point2D end, sf::Color color = sf::Color:);
 	sf::RectangleShape drawSFMLLine(int x, int y, int length, int rotation, sf::Color fillColor = sf::Color::Red);
 
 	void myDrawLine(sf::RenderWindow* window, int x0, int y0, int x1, int y1, sf::Color color = sf::Color::Red);
@@ -54,7 +53,5 @@ public:
 
 private:
 	void swap(int* a, int* b);
-
-	/*sf::ConvexShape drawLine(int x0, int y0, int x1, int y1, sf::Color fillColor = sf::Color::Red);*/
 
 };

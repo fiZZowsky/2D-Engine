@@ -23,7 +23,6 @@
     <ClCompile Include="BitmapObject.cpp" />
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="Engine.cpp" />
-    <ClCompile Include="Input.cpp" />
     <ClCompile Include="LineSegment.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -32,7 +31,6 @@
     <ClCompile Include="PrimitiveRenderer.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="SpriteObject.cpp" />
-    <ClCompile Include="SpritesManager.cpp" />
     <ClCompile Include="Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -55,7 +53,6 @@
     <ClInclude Include="ShapeObject.h" />
     <ClInclude Include="SpriteDirection.h" />
     <ClInclude Include="SpriteObject.h" />
-    <ClInclude Include="SpritesManager.h" />
     <ClInclude Include="TransformableObject.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="UpdatableObject.h" />
