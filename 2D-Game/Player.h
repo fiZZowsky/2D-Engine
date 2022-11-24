@@ -4,13 +4,13 @@
 class Player: public virtual SpriteObject
 {
 private:
-	static const int PLAYER_SPEED = 500;
+	static const int PLAYER_SPEED = 400;
 	int x, y;
 	int isMoving;
 
 public:
 	Player();
-	Player(int x, int y, std::vector<sf::Image> bitmaps);
+	Player(int x, int y, std::string spritesheetFile);
 
 	int getX();
 	int getY();

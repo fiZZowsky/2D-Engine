@@ -21,7 +21,9 @@ enum WindowMode {FULLSCREEN, WINDOWED, CUSTOM};
 
 class Engine {
 
-protected:
+	static const std::string PLAYER_SPRITESHEET;
+
+private:
 	static Engine* instance;
 	Engine();
 	virtual ~Engine();
@@ -30,22 +32,20 @@ protected:
 	float deltaTime;
 
 
-	//Private functions
-	void initWindow(int windowMode);
-
+	void init(int windowMode);
 	void update();
 	void render();
 
 	PrimitiveRenderer primitiveRenderer;
+	Player player;
 
 public:
 	static Engine *getInstance();
 
 	sf::RenderWindow* window;
-	//Functions
+
 	void run();
 	float getDeltaTime();
 
-	void initPlayer();
-	Player player;
+	void initGame();
 };

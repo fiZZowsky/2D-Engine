@@ -1,9 +1,11 @@
 #include "Engine.h"
 
 Engine* Engine::instance = nullptr;
+const std::string Engine::PLAYER_SPRITESHEET = "Bitmaps/spritesheet.png";
+
 
 Engine::Engine() {
-	this->initWindow(WINDOWED);
+	this->init(WINDOWED);
 }
 
 Engine::~Engine() {
@@ -36,30 +38,15 @@ void Engine::run() {
 	}
 }
 
-
-//TODO: delete this latter
-void Engine::initPlayer() {
-	sf::Image p1, p2, p3, p4;
-	p1.loadFromFile("Bitmaps/p1.png");
-	p2.loadFromFile("Bitmaps/p2.png");
-	p3.loadFromFile("Bitmaps/p3.png");
-	p4.loadFromFile("Bitmaps/p4.png");
-
-	std::vector<sf::Image> bitmaps;
-	bitmaps.push_back(p1);
-	bitmaps.push_back(p2);
-	bitmaps.push_back(p3);
-	bitmaps.push_back(p4);
-
-	player = Player(0, 0, bitmaps);
+void Engine::initGame() {
+	player = Player(0, 0, PLAYER_SPRITESHEET);
 }
 
 //Private functions
-void Engine::initWindow(int windowMode) {
+void Engine::init(int windowMode) {
 	Vector2f resolution;
 
-	//TODO: delete this
-	initPlayer();
+	initGame();
 
 	resolution.x = VideoMode::getDesktopMode().width;
 	resolution.y = VideoMode::getDesktopMode().height;
@@ -98,17 +85,23 @@ void Engine::update() {
 void Engine::render() {
 	this->window->clear(sf::Color::White);
 	
-	//player.drawPlayer(window);
+	player.drawPlayer(window);
 
-	std::vector<sf::Sprite> sprites;
-	SpritesManager spritesManager("Bitmaps/spritesheet.png");
+	//sf::Texture t;
+	//t = player.spritesheet[0];
+	//sf::Sprite s(t);
+	////window->draw(s);
+	//window->draw(player.upSprites[1]);
 
-	sprites = spritesManager.getRightSprites();
 
-	for (int i = 0; i < sprites.size(); i++) {
-		sprites[i].setPosition(i * 64, 50);
-		window->draw(sprites[i]);
-	}
+	// sf::Sprite sprite(player.spritesheet);
+	//sf::Sprite sprite2(player.spritesheet, sf::IntRect(0, 0, 64, 64));
+	//window->draw(sprite);
+	//player.loadSpritesFromFile("Bitmaps/spritesheet.png");
+
+	//for (int i = 0; i < player.allSprites.size(); i++) {
+	//	window->draw(player.allSprites[i]);
+	//}
 
 
 

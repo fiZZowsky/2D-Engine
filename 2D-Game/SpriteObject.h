@@ -13,8 +13,7 @@ public:
 	static const int FRAMES_SPEED = 8;
 
 	SpriteObject();
-	SpriteObject(sf::Image bitmap);
-	SpriteObject(std::vector<sf::Image> bitmaps);
+	SpriteObject(std::string filename);
 
 	void animate(sf::RenderWindow* window);
 

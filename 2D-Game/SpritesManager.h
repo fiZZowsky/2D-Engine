@@ -2,8 +2,8 @@
 #include "Headers.h"
 #include "BitmapHandler.h"
 #include "Settings.h"
+#include "SpriteDirection.h"
 
-enum SpritesDirection{ DOWN, LEFT, RIGHT, UP};
 
 class SpritesManager
 {
