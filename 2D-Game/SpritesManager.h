@@ -3,14 +3,30 @@
 #include "BitmapHandler.h"
 #include "Settings.h"
 
+enum SpritesDirection{ DOWN, LEFT, RIGHT, UP};
+
 class SpritesManager
 {
 private:
+	static const int ROWS_NUMBER = 4;
+	static const int COLUMNS_NUMBER = 4;
+
+
 	sf::Texture spritesheet;
-	std::vector<sf::Sprite> spritesCollection;
+	std::vector<sf::Sprite> leftSprites;
+	std::vector<sf::Sprite> rightSprites;
+	std::vector<sf::Sprite> upSprites;
+	std::vector<sf::Sprite> downSprites;
 
 public:
 	SpritesManager();
-	std::vector<sf::Sprite> loadSpritesFromFile(std::string filename, int rows, int colums, int spritesInRow);
+	SpritesManager(std::string filename);
+	void loadSpritesFromFile(std::string filename);
+
+	std::vector<sf::Sprite> getLeftSprites();
+	std::vector<sf::Sprite> getRightSprites();
+	std::vector<sf::Sprite> getUpSprites();
+	std::vector<sf::Sprite> getDownSprites();
+
 
 };
