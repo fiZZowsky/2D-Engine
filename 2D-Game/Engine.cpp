@@ -101,10 +101,9 @@ void Engine::render() {
 	//player.drawPlayer(window);
 
 	std::vector<sf::Sprite> sprites;
-	SpritesManager spritesManager;
+	SpritesManager spritesManager("Bitmaps/spritesheet.png");
 
-	sprites = spritesManager.loadSpritesFromFile("Bitmaps/spritesheet.png", 4, 4, 4);
-
+	sprites = spritesManager.getRightSprites();
 
 	for (int i = 0; i < sprites.size(); i++) {
 		sprites[i].setPosition(i * 64, 50);
