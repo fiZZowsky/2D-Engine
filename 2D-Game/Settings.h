@@ -19,4 +19,4 @@ constexpr std::chrono::microseconds FRAME_DURATION_60(16667); //60FPS
 constexpr std::chrono::microseconds FRAME_DURATION_30(33333); //30FPS
 
 constexpr unsigned short FPS_LIMIT = 60;
-constexpr unsigned short MAX_SPRITESHEET_ROWS_NUMBER = 4;
+constexpr unsigned int FRAMES_SPEED = 8;

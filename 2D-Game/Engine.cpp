@@ -32,7 +32,6 @@ void Engine::run() {
 		this->update();
 		this->render();
 
-		//FPS counter
 		curTime = clock.getElapsedTime();
 		this->deltaTime = curTime.asSeconds() - prevTime.asSeconds();
 	}

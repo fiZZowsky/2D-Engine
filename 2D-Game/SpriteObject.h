@@ -10,7 +10,6 @@ private:
 	int framesCounter;
 
 public:
-	static const int FRAMES_SPEED = 8;
 
 	SpriteObject();
 	SpriteObject(std::string filename);

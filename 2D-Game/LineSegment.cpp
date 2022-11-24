@@ -34,10 +34,8 @@ bool LineSegment::isLineSegmentsCrossing(LineSegment ls1, LineSegment ls2) {
 		v3 = LineSegment::crossProduct(A, B, C),
 		v4 = LineSegment::crossProduct(A, B, D);
 
-	//sprawdzenie czy siê przecinaj¹ - dla niedu¿ych liczb
-	//if(v1*v2 < 0 && v3*v4 < 0) return 1;
 
-	//sprawdzenie czy siê przecinaj¹ - dla wiêkszych liczb
+	//sprawdzenie czy siê przecinaj¹
 	if ((v1 > 0 && v2 < 0 || v1 < 0 && v2>0) && (v3 > 0 && v4 < 0 || v3 < 0 && v4>0)) return 1;
 
 	//sprawdzenie, czy koniec odcinka le¿y na drugim

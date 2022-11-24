@@ -43,11 +43,9 @@ void BitmapObject::loadSpritesFromFile(std::string filename) {
 
 				//getting  down sprites
 				if (i == DOWN) {
-					std::cout << i << std::endl;
 					downSprites.push_back(sprite);
 				}
 				else if (i == LEFT) {
-					std::cout << i << std::endl;
 					leftSprites.push_back(sprite);
 				}
 				else if (i == RIGHT) {
