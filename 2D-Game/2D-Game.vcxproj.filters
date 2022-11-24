@@ -137,6 +137,9 @@
     <ClInclude Include="SpritesManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SpriteDirection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="2D-Game-Engine.rc">

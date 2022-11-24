@@ -4,11 +4,7 @@ SpriteObject::SpriteObject() {
 	framesCounter = 0;
 }
 
-SpriteObject::SpriteObject(sf::Image image): BitmapObject(image) {
-	framesCounter = 0;
-}
-
-SpriteObject::SpriteObject(std::vector<sf::Image> bitmaps): BitmapObject(bitmaps) {
+SpriteObject::SpriteObject(std::string filename): BitmapObject(filename) {
 	framesCounter = 0;
 }
 

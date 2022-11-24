@@ -1,24 +1,30 @@
 #pragma once
 #include <vector>
 #include "DrawableObject.h"
+#include "SpriteDirection.h"
+
 
 class BitmapObject : public virtual DrawableObject
 {
-public:
+protected:
+	static const int ROWS_NUMBER = 4;
+	static const int COLUMNS_NUMBER = 4;
 
-	std::vector<sf::Image> bitmaps;
-	std::vector<sf::Texture> textures;
-	std::vector<sf::Sprite> sprites;
-	
+	std::vector<sf::Texture> spritesheet;
+	std::vector<sf::Sprite> leftSprites;
+	std::vector<sf::Sprite> rightSprites;
+	std::vector<sf::Sprite> upSprites;
+	std::vector<sf::Sprite> downSprites;
+
+	int currentlyUsedSprites;
 	int counter;
-
 	void manageCounter();
+	void updatePosition(int x, int y, std::vector<sf::Sprite> &sprites);
 
 public: 
 	BitmapObject();
-	BitmapObject(sf::Image bitmap);
-	BitmapObject(std::vector<sf::Image> bitmaps);
-
+	BitmapObject(std::string filename);
+	void loadSpritesFromFile(std::string filename);
 
 	void draw(sf::RenderWindow* window);
 	void changeToNextBitmap();

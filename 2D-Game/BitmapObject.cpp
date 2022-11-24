@@ -1,52 +1,84 @@
 #include "BitmapObject.h"
 
 void BitmapObject::manageCounter() {
-	if (counter > sprites.size() - 1) {
+	if (counter > COLUMNS_NUMBER - 1) {
 		counter = 0;
 	}
 }
 
-BitmapObject::BitmapObject() {};
-
-BitmapObject::BitmapObject(sf::Image bitmap) {
+BitmapObject::BitmapObject() {
 	counter = 0;
+	currentlyUsedSprites = LEFT;
+};
 
-	this->bitmaps.push_back(bitmap);
+BitmapObject::BitmapObject(std::string filename) {
+	counter = 0;
+	currentlyUsedSprites = LEFT;
 
-	sf::Texture texture;
-	texture.loadFromImage(bitmap);
-	this->textures.push_back(texture);
+	loadSpritesFromFile(filename);
+}
+void BitmapObject::loadSpritesFromFile(std::string filename) {
+	int width, height;
+	sf::Vector2f spriteSize;
 
-	sf::Sprite sprite(textures[0]);
-	this->sprites.push_back(sprite);
+	bool isSpritesheetLoaded = false;
+
+	//ading only one texture, whole sprite sheet
+	sf::Texture spritesheetTexture;
+	isSpritesheetLoaded = spritesheetTexture.loadFromFile(filename);
+	
+
+	if (isSpritesheetLoaded) {
+		spritesheet.push_back(spritesheetTexture);
+		width = spritesheet[0].getSize().x;
+		height = spritesheet[0].getSize().y;
+		spriteSize.x = width / ROWS_NUMBER;
+		spriteSize.y = height / COLUMNS_NUMBER;
+
+		for (int i = 0; i < ROWS_NUMBER; i++) {
+			for (int j = 0; j < COLUMNS_NUMBER; j++) {
+
+				//sf::IntRect(j * width, i * height, width, height)
+				sf::Sprite sprite(spritesheet[0], sf::IntRect(j * spriteSize.x, i * spriteSize.y, spriteSize.x, spriteSize.y));
+
+				//getting  down sprites
+				if (i == DOWN) {
+					std::cout << i << std::endl;
+					downSprites.push_back(sprite);
+				}
+				else if (i == LEFT) {
+					std::cout << i << std::endl;
+					leftSprites.push_back(sprite);
+				}
+				else if (i == RIGHT) {
+					rightSprites.push_back(sprite);
+				}
+				else if (i == UP) {
+					upSprites.push_back(sprite);
+				}
+			}
+		}
+
+	}
 }
 
-BitmapObject::BitmapObject(std::vector<sf::Image> bitmaps) {
-	counter = 0;
-
-	this->bitmaps = bitmaps;
-
-	for (int i = 0; i < bitmaps.size(); i++) {
-		sf::Texture texture;
-		texture.loadFromImage(bitmaps[i]);
-		textures.push_back(texture);
-	}
-
-
-	for (int i = 0; i < textures.size(); i++) {
-		sf::Sprite sprite(textures[i]);
-		sprites.push_back(sprite);
-	}
-
-}
 
 void BitmapObject::draw(sf::RenderWindow* window) {
 
-	//TODO: delete this
-	std::cout << counter << std::endl;
-
-	//std::cout << sprites.size() << std::endl;
-	window->draw(sprites[counter]);
+	switch (currentlyUsedSprites) {
+	case DOWN:
+		window->draw(downSprites[counter]);
+		break;
+	case LEFT:
+		window->draw(leftSprites[counter]);
+		break;
+	case RIGHT:
+		window->draw(rightSprites[counter]);
+		break;
+	case UP:
+		window->draw(upSprites[counter]);
+		break;
+	}
 }
 
 void BitmapObject::changeToNextBitmap() {
@@ -55,6 +87,25 @@ void BitmapObject::changeToNextBitmap() {
 }
 
 void BitmapObject::updateSpritesPosition(int x, int y) {
+
+	switch (currentlyUsedSprites) {
+	case DOWN:
+		updatePosition(x, y, downSprites);
+		break;
+	case LEFT:
+		updatePosition(x, y, leftSprites);
+		break;
+	case RIGHT:
+		updatePosition(x, y, rightSprites);
+		break;
+	case UP:
+		updatePosition(x, y, upSprites);
+		break;
+	}
+
+}
+
+void BitmapObject::updatePosition(int x, int y, std::vector<sf::Sprite> &sprites) {
 	for (int i = 0; i < sprites.size(); i++) {
 		sprites[i].setPosition(x, y);
 	}
