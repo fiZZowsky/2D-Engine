@@ -43,6 +43,8 @@ public:
 
 	sf::RenderWindow* window;
 
+	bool doFillColor;
+
 	void run();
 	float getDeltaTime();
 

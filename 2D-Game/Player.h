@@ -1,7 +1,8 @@
 #pragma once
 #include "SpriteObject.h"
+#include "UpdatableObject.h"
 
-class Player: public virtual SpriteObject
+class Player: public virtual SpriteObject, public virtual UpdatableObject
 {
 private:
 	static const int PLAYER_SPEED = 400;

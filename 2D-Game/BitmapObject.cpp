@@ -8,12 +8,12 @@ void BitmapObject::manageCounter() {
 
 BitmapObject::BitmapObject() {
 	counter = 0;
-	currentlyUsedSprites = LEFT;
+	currentlyUsedSprites = DOWN;
 };
 
 BitmapObject::BitmapObject(std::string filename) {
 	counter = 0;
-	currentlyUsedSprites = LEFT;
+	currentlyUsedSprites = DOWN;
 
 	loadSpritesFromFile(filename);
 }

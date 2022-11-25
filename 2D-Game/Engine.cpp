@@ -1,7 +1,10 @@
 #include "Engine.h"
 
-Engine* Engine::instance = nullptr;
 const std::string Engine::PLAYER_SPRITESHEET = "Bitmaps/spritesheet.png";
+
+Engine* Engine::instance = nullptr;
+
+
 
 
 Engine::Engine() {
@@ -38,7 +41,8 @@ void Engine::run() {
 }
 
 void Engine::initGame() {
-	player = Player(0, 0, PLAYER_SPRITESHEET);
+	player = Player(1400, 800, PLAYER_SPRITESHEET);
+	doFillColor = false;
 }
 
 //Private functions
@@ -69,154 +73,161 @@ void Engine::init(int windowMode) {
 void Engine::update() {
 	Event event;
 
+	
+
 	player.update(deltaTime);
 
 	while (this->window->pollEvent(event)) {
-		if (event.Event::type == Event::Closed) {
+
+		switch (event.type)
+		{
+			// window closed
+		case sf::Event::Closed:
 			this->window->close();
-		}
-		if (event.Event::KeyPressed && event.Event::key.code == Keyboard::Escape) {
-			this->window->close();
+			break;
+
+			// key pressed
+		case sf::Event::KeyPressed:
+			if (event.Event::key.code == Keyboard::Escape) {
+				this->window->close();
+			}
+
+			break;
+		case sf::Event::KeyReleased:
+			if (event.Event::key.code == Keyboard::P) {
+				if (doFillColor) doFillColor = false;
+				else doFillColor = true;
+			}
+			break;
+
+			// we don't process other types of events
+		default:
+			break;
 		}
 	}
 }
 
 void Engine::render() {
 	this->window->clear(sf::Color::White);
-	
+
 	player.drawPlayer(window);
 
-	//sf::Texture t;
-	//t = player.spritesheet[0];
-	//sf::Sprite s(t);
-	////window->draw(s);
-	//window->draw(player.upSprites[1]);
+	//=====================================================================================
+	// Kod najduj¹cy siê poni¿ej s³u¿y do utworzenia dema technologicznego silnika
+	// W metodzie render powinno znajdowaæ siê tylko rysowanie, lecz ze wzglêdu na chêæ
+	// jak najmniejszej ingerencji w ca³¹ strukturê silnika prawie ca³y kod potrzebny 
+	// do przedstawienia dema prezentuj¹cego mo¿liwoœci silnika zosta³ umieszczony 
+	// w tej jednej metodzie
+	//=====================================================================================
+	sf::Font font;
+	font.loadFromFile("arial.ttf");
+
+	//=========================================
+	// primitywy
+	//=========================================
+	sf::Text t1("Primitywy", font, 30);
+	t1.setPosition(150, 30);
+	t1.setFillColor(sf::Color::Black);
+	window->draw(t1);
+
+	window->draw(primitiveRenderer.drawRectangle(50, 150, 50, 50, sf::Color::Green, sf::Color::Blue));
+	window->draw(primitiveRenderer.drawRectangle(150, 130, 150, 70, sf::Color::Green, sf::Color::Yellow));
+	window->draw(primitiveRenderer.drawCircle(70, 220, 70, sf::Color::Green, sf::Color::Green));
+	window->draw(primitiveRenderer.drawPolygon(250, 220, 50, 3, sf::Color::Green, sf::Color(255, 102, 0)));
+	window->draw(primitiveRenderer.drawPolygon(250, 320, 40, 4, sf::Color::Green, sf::Color(255, 0, 102)));
+
+	//=========================================
+	// algorytm rysowowania ko³a i elipsy
+	//=========================================
+
+	sf::Text t2("Algorytm rysowania kola i elipsy", font, 30);
+	t2.setPosition(700, 30);
+	t2.setFillColor(sf::Color::Black);
+	window->draw(t2);
+
+	primitiveRenderer.myDrawCircle(window, 900, 150, 65, sf::Color(0, 102, 255));
+	primitiveRenderer.myDrawElipse(window, 900, 300, 70, 40, sf::Color(0, 255, 0));
 
 
-	// sf::Sprite sprite(player.spritesheet);
-	//sf::Sprite sprite2(player.spritesheet, sf::IntRect(0, 0, 64, 64));
-	//window->draw(sprite);
-	//player.loadSpritesFromFile("Bitmaps/spritesheet.png");
+	//=========================================
+	// Wypelnianie kolorem
+	//=========================================
 
-	//for (int i = 0; i < player.allSprites.size(); i++) {
-	//	window->draw(player.allSprites[i]);
-	//}
+	Rectangle rec(1380, 230, 130, 120, sf::Color(102, 102, 102));
+	rec.draw(window);
 
+	sf::Text t3("Wypelnianie kolorem (nacisnij P)", font, 30);
+	t3.setPosition(1400, 30);
+	t3.setFillColor(sf::Color::Black);
+	window->draw(t3);
 
+	sf::Text boundryFillText("BoundryFill", font, 20);
+	boundryFillText.setPosition(1400, 250);
+	boundryFillText.setFillColor(sf::Color(255, 153, 51));
+	window->draw(boundryFillText);
 
-
-	/*sf::Image image, im2;
-	image.loadFromFile("Bitmaps/p1.png");
-	im2.loadFromFile("Bitmaps/t1.png");
-
-	std::vector<sf::Image> bitmaps;
-	bitmaps.push_back(image);
-	bitmaps.push_back(im2);
-
-	BitmapObject bo(bitmaps);
-	bo.changeToNextBitmap();
-	bo.changeToNextBitmap();
-	bo.draw(window);*/
-
-	//sf::Texture texture;
-	//texture.loadFromImage(image);
-	//sf::Sprite sprite(texture);
-
-	////window->draw(sprite);
-
-	//BitmapObject bo(image);
-	////sf::Texture tx1;
-	////tx1.loadFromImage(bo.bitmaps[0]);
-	////sf::Sprite sp1(bo.textures[0]);
-	////window->draw(sp1);
-
-	////SpriteObject tmp(image);
+	sf::Text floodFillText("FloodFill", font, 20);
+	floodFillText.setPosition(1400, 300);
+	floodFillText.setFillColor(sf::Color(102, 255, 255));
+	window->draw(floodFillText);
 
 
+	Point2D p1(1500, 170), p2(1600, 190), p3(1800, 300), p4(1700, 350), p5(1650, 500);
+	std::vector<Point2D> polyline;
+	polyline.push_back(p1);
+	polyline.push_back(p2);
+	polyline.push_back(p3);
+	polyline.push_back(p4);
+	polyline.push_back(p5);
 
-	//player.update(deltaTime);
-	////Player p1(200, 200);
-	////p1.draw(window);
-	//player.draw(window);
+	LineSegment ls(&p1, &p4, sf::Color::Black);
 
-	//BitmapHandler bh;
-	//sf::Texture texture;
-	// 
-	
+	window->draw(primitiveRenderer.drawClosedPolyline(polyline, sf::Color::Black));
+	ls.draw(window);
 
-
-	//sf::Image bitmap = bh.create(300, 300, sf::Color::Blue);
-	/*sf::Image bitmap, t1, t2;
-	bh.loadFromFile(&bitmap, "Bitmaps/bitmap-test.png");
-	bh.flipHorizontally(&bitmap);
-	bh.saveToFile(bitmap, "Bitmaps/bitmap-saved.png");
-
-	bh.loadFromFile(&t1, "t1.png");
-	bh.loadFromFile(&t2, "t2.png");
-
-	bh.remove(&t2);
+	if (doFillColor) {
+		primitiveRenderer.boundryFill(window, Point2D(1600, 300), sf::Color(255, 153, 51), sf::Color::Black);
+		primitiveRenderer.floodFill(window, Point2D(1550, 190), sf::Color(102, 255, 255));
+	}
 
 
+	//=========================================
+	// Przekszta³cenia
+	//=========================================
 
-	bh.copy(&t1, &bitmap);
+	sf::Text t4("Przeksztalcenia", font, 30);
+	t4.setPosition(400, 600);
+	t4.setFillColor(sf::Color::Black);
+	window->draw(t4);
 
-	texture.loadFromImage(bitmap);
-	sf::Sprite sprite;
-	sprite.setTexture(texture);
+	Rectangle rec1(200, 700, 100, 100, sf::Color(51, 153, 255));
+	Rectangle rec2(400, 700, 100, 100, sf::Color(51, 153, 255));
+	Rectangle rec3(700, 700, 100, 100, sf::Color(51, 153, 255));
+	rec1.draw(window);
+	rec2.scale(2, 2);
+	rec2.draw(window);
+	rec3.rotate(30);
+	rec3.draw(window);
 
-	window->draw(sprite);*/
+	LineSegment segment1(200, 850, 200, 950);
+	LineSegment segment2(200, 850, 200, 950);
+	Point2D basePoint(250, 900, sf::Color(102, 0, 102));
+	basePoint.draw(window);
+	segment1.rotate(120, sf::Vector2f(basePoint.getX(), basePoint.getY()));
 
-
-	//Point2D p1(100, 100), p2(200, 100), p3(200, 300);
-	//std::vector<Point2D> points;
-	//points.push_back(p1);
-	//points.push_back(p2);
-	//points.push_back(p3);
-
-	//primitiveRenderer.myDrawPolygon(window, points, sf::Color::Black);
-	//primitiveRenderer.floodFill(window, Point2D(150, 150), sf::Color::Yellow);
-	////primitiveRenderer.boundryFill(window, Point2D(150, 150), sf::Color::Blue, sf::Color::Black);
-	//primitiveRenderer.myDrawCircle(window, 500, 500, 50, sf::Color::Blue);
-	//primitiveRenderer.myDrawElipse(window, 600, 500, 50, 30, sf::Color::Green);
-
-
-	/*Triangle t1(100, 100, 30, sf::Color::Green);
-	t1.rotate(15);
-	t1.setX(500);
-	t1.draw(window);
-
-	Polygon p1(300, 300, 7, 50, sf::Color::Yellow);
-	p1.rotate(15);
-	p1.draw(window);
-
-	LineSegment(10, 10, 50, 50);*/
-
-	/*Point2D p1(50, 50, sf::Color::Blue), p2(50, 100);
-	sf::Vector2f point(50, 100);
-
-	p2.draw(window);
-	p1.rotate(90, point);
-	p1.draw(window);*/
-
-	//LineSegment ls1(300, 100, 300, 300, sf::Color::Red), ls2(300, 100, 300, 300, sf::Color::Blue);
-	//Point2D point(250, 200);
-	//sf::Vector2f x0(250, 200);
-	//point.draw(window);
-	////ls1.scale(3, x0);
-	//ls1.rotate(90, x0);
-	//ls1.draw(window);
-	//ls2.draw(window);
-
-	//LineSegment ls1(300, 100, 300, 300, sf::Color::Red);
-	//ls1.translate(sf::Vector2f(400, 400));
-	//ls1.draw(window);
-	
+	window->draw(segment1.draw(sf::Color::Blue));
+	window->draw(segment2.draw(sf::Color::Blue));
 
 
+	//=========================================
+	// Gracz
+	//=========================================
 
+	sf::Text t5("Gracz (Sterowanie strzalkami)", font, 30);
+	t5.setPosition(1250, 600);
+	t5.setFillColor(sf::Color::Black);
+	window->draw(t5);
 
-
-	//============================================================================================
 
 	this->window->display();
 }
