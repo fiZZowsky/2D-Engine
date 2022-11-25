@@ -267,8 +267,6 @@ void PrimitiveRenderer::boundryFill(sf::RenderWindow* window, Point2D p, sf::Col
 	//getting pixel color
 	sf::Color pixelColor = screenshot.getPixel(p.getX(), p.getY());
 
-	//if (pixelColor == fillColor) std::cout << "White" << std::endl;
-	//else std::cout << "Inny" << std::endl;
 
 	//iteracyjnie
 	std::vector<Point2D> pointsToFill;
@@ -281,8 +279,6 @@ void PrimitiveRenderer::boundryFill(sf::RenderWindow* window, Point2D p, sf::Col
 		
 		//ustalenie koloru pixela
 		pixelColor = screenshot.getPixel(p.getX(), p.getY());
-
-		//if (pixelColor == sf::Color::Black) std::cout << "Black" << std::endl;
 
 		if (pixelColor == fillColor) continue;
 		if (pixelColor == boundryColor) continue;
@@ -313,8 +309,6 @@ void PrimitiveRenderer::floodFill(sf::RenderWindow* window, Point2D p, sf::Color
 	sf::Color pixelColor = screenshot.getPixel(p.getX(), p.getY());
 	sf::Color backgroundColor = pixelColor;
 
-	//if (pixelColor == fillColor) std::cout << "White" << std::endl;
-	//else std::cout << "Inny" << std::endl;
 
 	//iteracyjnie
 	std::vector<Point2D> pointsToFill;
@@ -327,8 +321,6 @@ void PrimitiveRenderer::floodFill(sf::RenderWindow* window, Point2D p, sf::Color
 
 		//ustalenie koloru pixela
 		pixelColor = screenshot.getPixel(p.getX(), p.getY());
-
-		//if (pixelColor == sf::Color::Black) std::cout << "Black" << std::endl;
 
 		if (pixelColor == fillColor) continue;
 		if (pixelColor != backgroundColor) continue;
@@ -346,11 +338,3 @@ void PrimitiveRenderer::floodFill(sf::RenderWindow* window, Point2D p, sf::Color
 	}
 }
 
-
-sf::RectangleShape PrimitiveRenderer::drawSFMLLine(int x, int y, int length, int rotation, sf::Color fillColor) {
-	sf::RectangleShape SFMLline(sf::Vector2f(length, 1));
-	SFMLline.setPosition(sf::Vector2f(x, y));
-	SFMLline.setFillColor(fillColor);
-	SFMLline.rotate(rotation);
-	return SFMLline;
-}

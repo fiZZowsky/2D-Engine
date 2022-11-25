@@ -100,7 +100,6 @@ void Engine::update() {
 			}
 			break;
 
-			// we don't process other types of events
 		default:
 			break;
 		}
